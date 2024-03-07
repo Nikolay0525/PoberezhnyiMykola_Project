@@ -56,12 +56,13 @@ namespace Project
                         Console.WriteLine(role);
                         if (role == "student")
                         {
+                            this.Hide();
                             StudentProfile studentProfile = new StudentProfile();
                             studentProfile.Show();
-
                         }
                         else if (role == "teacher")
                         {
+                            this.Hide();
                             TeacherProfile teacherProfile = new TeacherProfile();
                             teacherProfile.Show();
                         }
@@ -75,7 +76,9 @@ namespace Project
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
         }
 
         private void PasswordLabel_Click(object sender, EventArgs e)
