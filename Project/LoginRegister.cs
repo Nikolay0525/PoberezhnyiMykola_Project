@@ -78,7 +78,7 @@ namespace Project
         {
             this.Hide();
             RegistrationWindow registrationWindow = new RegistrationWindow();
-            registrationWindow.Show();
+            // registrationWindow.Show();
         }
 
         private void PasswordLabel_Click(object sender, EventArgs e)
