@@ -1,6 +1,6 @@
 ﻿namespace Project
 {
-    partial class RegistrationWindow
+    partial class UniversityEnvironment
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // RegistrationWindow
+            // UniversityEnvironment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 300);
-            this.Name = "RegistrationWindow";
-            this.Text = "RegistrationWindow";
-            this.Load += new System.EventHandler(this.RegistrationWindow_Load);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "UniversityEnvironment";
+            this.Text = "Welcome Back!";
+            this.Load += new System.EventHandler(this.UniversityEnvironment_Load);
             this.ResumeLayout(false);
 
         }

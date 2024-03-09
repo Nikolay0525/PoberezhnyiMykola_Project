@@ -16,15 +16,12 @@ namespace Project
 {
     public partial class UniversityLoginWindow : MaterialForm
     {
-
-        private readonly string _path = "UserDataBase.txt";
-
         public UniversityLoginWindow()
         {
             InitializeComponent();
-            if (!File.Exists(_path))
+            if (!File.Exists(Utility.DBPath))
             {
-                File.Create(_path);
+                File.Create(Utility.DBPath);
             }
         }
 
@@ -44,31 +41,44 @@ namespace Project
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            using (StreamReader UserDBReader = new StreamReader(_path))
+            using (StreamReader UserDBReader = new StreamReader(Utility.DBPath))
             {
                 string line;
                 while ((line = UserDBReader.ReadLine()) != null)
                 {
-                    if (line == UsernameTextBox.Text && (line = UserDBReader.ReadLine()) == PasswordTextBox.Text)
+                    if (line == UsernameTextBox.Text && UserDBReader.ReadLine() == PasswordTextBox.Text)
                     {
                         Console.WriteLine("Success!");
                         string role = UserDBReader.ReadLine();
+                        MessageLabel.Text = "";
                         Console.WriteLine(role);
+
                         if (role == "student")
                         {
-                            this.Hide();
-                            StudentProfile studentProfile = new StudentProfile();
-                            studentProfile.Show();
+                            Hide();
+                            UniversityEnvironment studentEnvironment = new UniversityEnvironment();
+                            studentEnvironment.FormClosed += (s, arg) =>
+                            {
+                                Show();
+                            };
+                            studentEnvironment.Show();
                         }
-                        else if (role == "teacher")
+                       /* else if (role == "teacher")
                         {
-                            this.Hide();
+                            Hide();
                             TeacherProfile teacherProfile = new TeacherProfile();
+                            teacherProfile.FormClosed += (s, arg) =>
+                            {
+                                Show();
+                            };
                             teacherProfile.Show();
-                        }
-                        return;
+                        }*/
                     }
-                    FailLabel.Text = "Something is wrong";
+                    else
+                    {
+                        Console.WriteLine("I`m here!");
+                        MessageLabel.Text = "Username or password is wrong";
+                    } 
                 }
             }
                 
@@ -76,12 +86,21 @@ namespace Project
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.FormClosed += (s, arg) =>
+            {
+                Show();
+            };
             registrationWindow.Show();
         }
 
-        private void PasswordLabel_Click(object sender, EventArgs e)
+        private void UsernameLabelLogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PasswordLabelLogin_Click(object sender, EventArgs e)
         {
 
         }

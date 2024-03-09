@@ -1,6 +1,6 @@
 ﻿namespace Project
 {
-    partial class StudentProfile
+    partial class TeacherEnvironment
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // StudentProfile
+            // TeacherEnvironment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "StudentProfile";
-            this.Text = "StudentProfile";
-            this.Load += new System.EventHandler(this.StudentProfile_Load);
+            this.Name = "TeacherEnvironment";
+            this.Load += new System.EventHandler(this.TeacherEnvironment_Load);
             this.ResumeLayout(false);
 
         }

@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
 
 namespace Project
 {
-    public partial class RegistrationWindow : MaterialForm
+    public partial class StudentEnvironment : Project.UniversityEnvironment
     {
-        public RegistrationWindow()
+        public StudentEnvironment()
         {
             InitializeComponent();
         }
 
-        private void RegistrationWindow_Load(object sender, EventArgs e)
+        private void StudentEnvironment_Load(object sender, EventArgs e)
         {
 
         }
