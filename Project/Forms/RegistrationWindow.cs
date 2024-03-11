@@ -27,29 +27,23 @@ namespace Project
 
         private void RegistrateAccountButton_Click(object sender, EventArgs e)
         {
-            using (StreamReader UserDBReader = new StreamReader(Utility.DBPath))
+            using (StreamReader UsersDBReader = new StreamReader(DataBase.UsersDBPath))
             {
-
-                string line;
-                while ((line = UserDBReader.ReadLine()) != null)
+                string line = UsersDBReader.ReadToEnd();
+                if (line.IndexOf(UsernameTextBox.Text) != -1)
                 {
-                    if (UsernameTextBox.Text == UserDBReader.ReadLine())
-                    {
-                        MessageLabel.Text = "Account with such username exist";
-                        return;
-                    }
+                    MessageLabel.Text = "Account with such username exist";
+                    return;
                 }
             }
 
-            using (StreamWriter UserDBWriter = new StreamWriter(Utility.DBPath, true))
+            using (StreamWriter UsersDBWriter = new StreamWriter(DataBase.UsersDBPath, true))
             {
                 if(UsernameTextBox.Text.Length >= 3 && PasswordTextBox.Text.Length >= 3)
                 {
+                    var role = TeacherCheck.Checked ? "Teacher" : "Student";
+                    UsersDBWriter.WriteLine(UsernameTextBox.Text + ',' + PasswordTextBox.Text + ',' + role);
                     MessageLabel.Text = "Successfully registrated account!";
-                    var role = TeacherCheck.Checked ? "teacher" : "student";
-                    UserDBWriter.WriteLine(UsernameTextBox.Text);
-                    UserDBWriter.WriteLine(PasswordTextBox.Text);
-                    UserDBWriter.WriteLine(role);
                 }
                 else { MessageLabel.Text = "Username or password is too short"; }
             }

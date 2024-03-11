@@ -8,14 +8,14 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public partial class StudentEnvironment : Project.UniversityEnvironment
+    public partial class OopCourseEnvironment : CourseEnvironment
     {
-        public StudentEnvironment()
+        public OopCourseEnvironment(string accesslevel,string courseName) : base(accesslevel, courseName)
         {
             InitializeComponent();
         }
 
-        private void StudentEnvironment_Load(object sender, EventArgs e)
+        private void OopCourseEnvironment_Load(object sender, EventArgs e)
         {
 
         }

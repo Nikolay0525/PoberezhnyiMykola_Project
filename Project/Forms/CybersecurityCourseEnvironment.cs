@@ -8,16 +8,11 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public partial class TeacherEnvironment : Project.UniversityEnvironment
+    public partial class CybersecurityCourseEnvironment : CourseEnvironment
     {
-        public TeacherEnvironment()
+        public CybersecurityCourseEnvironment(string accesslevel, string courseName) : base(accesslevel, courseName)
         {
             InitializeComponent();
-        }
-
-        private void TeacherEnvironment_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

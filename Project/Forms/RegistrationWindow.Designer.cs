@@ -113,14 +113,13 @@
             // 
             // MessageLabel
             // 
-            this.MessageLabel.AutoSize = true;
             this.MessageLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.MessageLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MessageLabel.ForeColor = System.Drawing.Color.Red;
-            this.MessageLabel.Location = new System.Drawing.Point(30, 93);
+            this.MessageLabel.Location = new System.Drawing.Point(16, 96);
             this.MessageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MessageLabel.Name = "MessageLabel";
-            this.MessageLabel.Size = new System.Drawing.Size(0, 20);
+            this.MessageLabel.Size = new System.Drawing.Size(260, 20);
             this.MessageLabel.TabIndex = 17;
             this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 

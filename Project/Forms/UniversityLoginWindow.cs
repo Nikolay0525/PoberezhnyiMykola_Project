@@ -19,10 +19,7 @@ namespace Project
         public UniversityLoginWindow()
         {
             InitializeComponent();
-            if (!File.Exists(Utility.DBPath))
-            {
-                File.Create(Utility.DBPath);
-            }
+            DataBase.CreateDB();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,38 +38,25 @@ namespace Project
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            using (StreamReader UserDBReader = new StreamReader(Utility.DBPath))
+            using (StreamReader UsersDBReader = new StreamReader(DataBase.UsersDBPath))
             {
-                string line;
-                while ((line = UserDBReader.ReadLine()) != null)
+                for (string line; (line = UsersDBReader.ReadLine()) != null;)
                 {
-                    if (line == UsernameTextBox.Text && UserDBReader.ReadLine() == PasswordTextBox.Text)
+                    string[] lineSplit = line.Split(',');
+                    if (lineSplit[0] == UsernameTextBox.Text && lineSplit[1] == PasswordTextBox.Text)
                     {
                         Console.WriteLine("Success!");
-                        string role = UserDBReader.ReadLine();
+                        string role = lineSplit[2];
                         MessageLabel.Text = "";
-                        Console.WriteLine(role);
+                        Hide();
+                        
+                        UniversityEnvironment universityEnvironment = new UniversityEnvironment(UsernameTextBox.Text,role);
+                        universityEnvironment.FormClosed += (s, arg) =>
+                        {
+                            Show();
+                        };
+                        universityEnvironment.Show();
 
-                        if (role == "student")
-                        {
-                            Hide();
-                            UniversityEnvironment studentEnvironment = new UniversityEnvironment();
-                            studentEnvironment.FormClosed += (s, arg) =>
-                            {
-                                Show();
-                            };
-                            studentEnvironment.Show();
-                        }
-                       /* else if (role == "teacher")
-                        {
-                            Hide();
-                            TeacherProfile teacherProfile = new TeacherProfile();
-                            teacherProfile.FormClosed += (s, arg) =>
-                            {
-                                Show();
-                            };
-                            teacherProfile.Show();
-                        }*/
                     }
                     else
                     {

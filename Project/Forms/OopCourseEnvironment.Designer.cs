@@ -1,6 +1,6 @@
 ﻿namespace Project
 {
-    partial class TeacherEnvironment
+    partial class OopCourseEnvironment
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // TeacherEnvironment
+            // OopCourseEnvironment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "TeacherEnvironment";
-            this.Load += new System.EventHandler(this.TeacherEnvironment_Load);
+            this.Name = "OopCourseEnvironment";
+            this.Load += new System.EventHandler(this.OopCourseEnvironment_Load);
             this.ResumeLayout(false);
 
         }
