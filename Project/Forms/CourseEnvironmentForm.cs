@@ -10,15 +10,20 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
-namespace Project
+
+namespace Project.Forms
 {
-    public partial class CourseEnvironment : MaterialForm
+    public partial class CourseEnvironmentForm : MaterialForm
     {
         private readonly string _accessLevel;
-        public CourseEnvironment(string accessLevel, string courseName)
+        private readonly string _dbName;
+        public CourseEnvironmentForm(string accessLevel, string courseName, string dbName)
         {
+            _dbName = dbName;
+            _accessLevel = accessLevel;
+            this.Text = "Welcome to " + courseName + "!";
             InitializeComponent();
-            DataBase.CreateJournal(JournalTable);
+            DataBaseManager.UpdateJournal(JournalTable);
             if (_accessLevel == "Student")
             {
                 for (int i = 0; i < JournalTable.RowCount; i++)
@@ -33,8 +38,6 @@ namespace Project
                     JournalTable.Columns[i].ReadOnly = false;
                 }
             }
-            this.Text = "Welcome to " + courseName + "!";
-            _accessLevel = accessLevel;
         }
 
         private void CourseEnvironment_Load(object sender, EventArgs e)
@@ -47,7 +50,7 @@ namespace Project
 
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void TabPage1_Click(object sender, EventArgs e)
         {
 
         }

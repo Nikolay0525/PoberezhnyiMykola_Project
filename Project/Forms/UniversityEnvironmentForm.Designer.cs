@@ -1,6 +1,6 @@
-﻿namespace Project
+﻿namespace Project.Forms
 {
-    partial class UniversityEnvironment
+    partial class UniversityEnvironmentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UniversityEnvironment));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UniversityEnvironmentForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.PersonRole = new System.Windows.Forms.Label();
@@ -64,7 +64,7 @@
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl.ItemSize = new System.Drawing.Size(150, 25);
             this.tabControl.Location = new System.Drawing.Point(0, 64);
             this.tabControl.Name = "tabControl";
@@ -88,13 +88,12 @@
             this.tabPage1.Size = new System.Drawing.Size(592, 303);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profile";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // PersonRole
             // 
             this.PersonRole.BackColor = System.Drawing.SystemColors.Control;
             this.PersonRole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PersonRole.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PersonRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PersonRole.Location = new System.Drawing.Point(35, 267);
             this.PersonRole.Name = "PersonRole";
             this.PersonRole.Size = new System.Drawing.Size(100, 25);
@@ -104,7 +103,7 @@
             // 
             this.PersonName.BackColor = System.Drawing.SystemColors.Control;
             this.PersonName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PersonName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PersonName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PersonName.Location = new System.Drawing.Point(35, 209);
             this.PersonName.Name = "PersonName";
             this.PersonName.Size = new System.Drawing.Size(100, 25);
@@ -112,7 +111,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(324, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 25);
@@ -122,7 +121,7 @@
             // 
             // NameLabel
             // 
-            this.NameLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NameLabel.Location = new System.Drawing.Point(35, 184);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(100, 25);
@@ -132,7 +131,7 @@
             // 
             // RoleLabel
             // 
-            this.RoleLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RoleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RoleLabel.Location = new System.Drawing.Point(35, 242);
             this.RoleLabel.Name = "RoleLabel";
             this.RoleLabel.Size = new System.Drawing.Size(100, 25);
@@ -181,7 +180,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.ImageLocation = "E:\\Новая папка\\Project4.6\\profile-icon-9.png";
+            this.pictureBox1.ImageLocation = "E:\\Work\\OOP\\Project4.6\\profile-icon-9.png";
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(8, 28);
             this.pictureBox1.Name = "pictureBox1";
@@ -204,7 +203,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Courses";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // button1
             // 
@@ -220,7 +218,7 @@
             // MessageLabel
             // 
             this.MessageLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.MessageLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MessageLabel.Location = new System.Drawing.Point(8, 28);
             this.MessageLabel.Name = "MessageLabel";
             this.MessageLabel.Size = new System.Drawing.Size(136, 57);
@@ -241,7 +239,7 @@
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(291, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(143, 25);
@@ -264,7 +262,6 @@
             this.AvailableCoursesTable.Name = "AvailableCoursesTable";
             this.AvailableCoursesTable.Size = new System.Drawing.Size(434, 269);
             this.AvailableCoursesTable.TabIndex = 2;
-            this.AvailableCoursesTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AvailableCoursesTable_CellContentClick);
             // 
             // RowCheck
             // 
@@ -293,15 +290,14 @@
             this.GridColumnCourseFaculty.ReadOnly = true;
             this.GridColumnCourseFaculty.Width = 200;
             // 
-            // UniversityEnvironment
+            // UniversityEnvironmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 400);
             this.Controls.Add(this.tabControl);
-            this.Name = "UniversityEnvironment";
+            this.Name = "UniversityEnvironmentForm";
             this.Text = "Welcome back to environment!";
-            this.Load += new System.EventHandler(this.UniversityEnvironment_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ActualCoursesTable)).EndInit();

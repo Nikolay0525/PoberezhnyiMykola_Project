@@ -5,12 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Project.Forms;
 
-namespace Project
+namespace Project.Forms
 {
-    public partial class OopCourseEnvironment : CourseEnvironment
+    public partial class OopCourseEnvironmentForm : CourseEnvironmentForm
     {
-        public OopCourseEnvironment(string accesslevel,string courseName) : base(accesslevel, courseName)
+        public OopCourseEnvironmentForm(string accesslevel,string courseName,string nameDB) : base(accesslevel, courseName, nameDB)
         {
             InitializeComponent();
         }

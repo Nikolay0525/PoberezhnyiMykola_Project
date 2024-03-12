@@ -1,6 +1,6 @@
-﻿namespace Project
+﻿namespace Project.Forms
 {
-    partial class CourseEnvironment
+    partial class CourseEnvironmentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -58,7 +58,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Course";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            this.tabPage1.Click += new System.EventHandler(this.TabPage1_Click);
             // 
             // tabPage2
             // 

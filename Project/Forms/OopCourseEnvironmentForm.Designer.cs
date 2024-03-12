@@ -1,6 +1,6 @@
-﻿namespace Project
+﻿namespace Project.Forms
 {
-    partial class OopCourseEnvironment
+    partial class OopCourseEnvironmentForm
     {
         /// <summary>
         /// Required designer variable.

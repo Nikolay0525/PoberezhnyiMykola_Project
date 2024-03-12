@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public class CourseFormCreator
+    public class UsefullMethods
     {
         public static Form CreateForm(string formName, params object[] parameters)
         {
@@ -23,6 +23,11 @@ namespace Project
                 // Якщо форму не знайдено, повернемо null або викличемо виняток, якщо це потрібно
                 throw new ArgumentException("Форму з назвою " + formName + " не знайдено.");
             }
+        }
+
+        public static void ShowMessage(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK);
         }
     }
 }

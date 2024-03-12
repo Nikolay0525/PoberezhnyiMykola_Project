@@ -1,6 +1,6 @@
-﻿namespace Project
+﻿namespace Project.Forms
 {
-    partial class CybersecurityCourseEnvironment
+    partial class CybersecurityCourseEnvironmentForm
     {
         /// <summary>
         /// Required designer variable.

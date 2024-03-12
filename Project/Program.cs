@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Project.Forms;
 
 namespace Project
 {
@@ -16,7 +17,7 @@ namespace Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UniversityLoginWindow());
+            Application.Run(new UniversityLoginForm());
         }
     }
 }
