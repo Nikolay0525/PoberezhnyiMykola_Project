@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Project.Forms;
+using Project.Models;
 
 namespace Project.Forms
 {
@@ -20,7 +21,7 @@ namespace Project.Forms
         public UniversityLoginForm()
         {
             InitializeComponent();
-            DataBaseManager.CreateDB();
+            DataBaseManager.CreateBaseDB();
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)
@@ -36,11 +37,11 @@ namespace Project.Forms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            string role = DataBaseManager.DeserializationOfUsersFromFile(DataBaseManager.UsersDBPath,UsernameTextBox.Text, PasswordTextBox.Text);
-            if (role != null)
+            User user = DataBaseManager.DeserializationOfUsersFromFile(DataBaseManager.UsersDBPath,UsernameTextBox.Text, PasswordTextBox.Text);
+            if (user != null)
             {
                 Hide();
-                UniversityEnvironmentForm universityEnvironmentForm = new UniversityEnvironmentForm(UsernameTextBox.Text, role);
+                UniversityEnvironmentForm universityEnvironmentForm = new UniversityEnvironmentForm(user);
                 universityEnvironmentForm.FormClosed += (s, arg) =>
                 {
                     Show();

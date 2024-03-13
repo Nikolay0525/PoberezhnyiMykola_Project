@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UniversityEnvironmentForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.PersonRole = new System.Windows.Forms.Label();
             this.PersonName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,10 +40,8 @@
             this.ActualGridColumnCourseId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActualGridColumnCourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActualGridColumnCourseFaculty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.MessageLabel = new System.Windows.Forms.Label();
             this.SignButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.AvailableCoursesTable = new System.Windows.Forms.DataGridView();
@@ -51,12 +49,13 @@
             this.GridColumnCourseId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GridColumnCourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GridColumnCourseFaculty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ActualCoursesTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvailableCoursesTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -64,7 +63,7 @@
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabControl.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl.ItemSize = new System.Drawing.Size(150, 25);
             this.tabControl.Location = new System.Drawing.Point(0, 64);
             this.tabControl.Name = "tabControl";
@@ -75,13 +74,14 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Controls.Add(this.CloseButton);
             this.tabPage1.Controls.Add(this.PersonRole);
             this.tabPage1.Controls.Add(this.PersonName);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.NameLabel);
             this.tabPage1.Controls.Add(this.RoleLabel);
             this.tabPage1.Controls.Add(this.ActualCoursesTable);
-            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -89,14 +89,25 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profile";
             // 
+            // CloseButton
+            // 
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Location = new System.Drawing.Point(170, 252);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(416, 39);
+            this.CloseButton.TabIndex = 3;
+            this.CloseButton.Text = "Sign out";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
             // PersonRole
             // 
             this.PersonRole.BackColor = System.Drawing.SystemColors.Control;
             this.PersonRole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PersonRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PersonRole.Location = new System.Drawing.Point(35, 267);
+            this.PersonRole.Location = new System.Drawing.Point(13, 267);
             this.PersonRole.Name = "PersonRole";
-            this.PersonRole.Size = new System.Drawing.Size(100, 25);
+            this.PersonRole.Size = new System.Drawing.Size(151, 25);
             this.PersonRole.TabIndex = 2;
             // 
             // PersonName
@@ -104,9 +115,9 @@
             this.PersonName.BackColor = System.Drawing.SystemColors.Control;
             this.PersonName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PersonName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PersonName.Location = new System.Drawing.Point(35, 209);
+            this.PersonName.Location = new System.Drawing.Point(14, 204);
             this.PersonName.Name = "PersonName";
-            this.PersonName.Size = new System.Drawing.Size(100, 25);
+            this.PersonName.Size = new System.Drawing.Size(150, 25);
             this.PersonName.TabIndex = 2;
             // 
             // label1
@@ -122,7 +133,7 @@
             // NameLabel
             // 
             this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameLabel.Location = new System.Drawing.Point(35, 184);
+            this.NameLabel.Location = new System.Drawing.Point(40, 179);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(100, 25);
             this.NameLabel.TabIndex = 2;
@@ -132,7 +143,7 @@
             // RoleLabel
             // 
             this.RoleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RoleLabel.Location = new System.Drawing.Point(35, 242);
+            this.RoleLabel.Location = new System.Drawing.Point(40, 242);
             this.RoleLabel.Name = "RoleLabel";
             this.RoleLabel.Size = new System.Drawing.Size(100, 25);
             this.RoleLabel.TabIndex = 2;
@@ -149,10 +160,10 @@
             this.ActualGridColumnCourseId,
             this.ActualGridColumnCourseName,
             this.ActualGridColumnCourseFaculty});
-            this.ActualCoursesTable.Location = new System.Drawing.Point(176, 28);
+            this.ActualCoursesTable.Location = new System.Drawing.Point(170, 28);
             this.ActualCoursesTable.Name = "ActualCoursesTable";
             this.ActualCoursesTable.ReadOnly = true;
-            this.ActualCoursesTable.Size = new System.Drawing.Size(413, 269);
+            this.ActualCoursesTable.Size = new System.Drawing.Size(419, 218);
             this.ActualCoursesTable.TabIndex = 1;
             this.ActualCoursesTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ActualCoursesTable_CellContentClick);
             // 
@@ -168,7 +179,7 @@
             this.ActualGridColumnCourseName.HeaderText = "Course";
             this.ActualGridColumnCourseName.Name = "ActualGridColumnCourseName";
             this.ActualGridColumnCourseName.ReadOnly = true;
-            this.ActualGridColumnCourseName.Width = 150;
+            this.ActualGridColumnCourseName.Width = 146;
             // 
             // ActualGridColumnCourseFaculty
             // 
@@ -177,22 +188,9 @@
             this.ActualGridColumnCourseFaculty.ReadOnly = true;
             this.ActualGridColumnCourseFaculty.Width = 200;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.ImageLocation = "E:\\Work\\OOP\\Project4.6\\profile-icon-9.png";
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(8, 28);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(157, 148);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.MessageLabel);
             this.tabPage2.Controls.Add(this.SignButton);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.AvailableCoursesTable);
@@ -207,31 +205,20 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(6, 239);
+            this.button1.Location = new System.Drawing.Point(9, 211);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 56);
+            this.button1.Size = new System.Drawing.Size(135, 84);
             this.button1.TabIndex = 6;
             this.button1.Text = "Unsign from courses";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.UnsignButton_Click);
             // 
-            // MessageLabel
-            // 
-            this.MessageLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MessageLabel.Location = new System.Drawing.Point(8, 28);
-            this.MessageLabel.Name = "MessageLabel";
-            this.MessageLabel.Size = new System.Drawing.Size(136, 57);
-            this.MessageLabel.TabIndex = 5;
-            this.MessageLabel.Text = "Choose atleast one course";
-            this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // SignButton
             // 
             this.SignButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SignButton.Location = new System.Drawing.Point(6, 125);
+            this.SignButton.Location = new System.Drawing.Point(9, 28);
             this.SignButton.Name = "SignButton";
-            this.SignButton.Size = new System.Drawing.Size(136, 108);
+            this.SignButton.Size = new System.Drawing.Size(136, 177);
             this.SignButton.TabIndex = 4;
             this.SignButton.Text = "Sign to courses";
             this.SignButton.UseVisualStyleBackColor = true;
@@ -260,7 +247,7 @@
             this.GridColumnCourseFaculty});
             this.AvailableCoursesTable.Location = new System.Drawing.Point(150, 28);
             this.AvailableCoursesTable.Name = "AvailableCoursesTable";
-            this.AvailableCoursesTable.Size = new System.Drawing.Size(434, 269);
+            this.AvailableCoursesTable.Size = new System.Drawing.Size(439, 269);
             this.AvailableCoursesTable.TabIndex = 2;
             // 
             // RowCheck
@@ -281,7 +268,7 @@
             this.GridColumnCourseName.HeaderText = "Course";
             this.GridColumnCourseName.Name = "GridColumnCourseName";
             this.GridColumnCourseName.ReadOnly = true;
-            this.GridColumnCourseName.Width = 150;
+            this.GridColumnCourseName.Width = 146;
             // 
             // GridColumnCourseFaculty
             // 
@@ -289,6 +276,17 @@
             this.GridColumnCourseFaculty.Name = "GridColumnCourseFaculty";
             this.GridColumnCourseFaculty.ReadOnly = true;
             this.GridColumnCourseFaculty.Width = 200;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox1.Image = global::Project.Properties.Resources.profile;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(147, 148);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // UniversityEnvironmentForm
             // 
@@ -301,9 +299,9 @@
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ActualCoursesTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AvailableCoursesTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,7 +311,6 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label PersonName;
         private System.Windows.Forms.DataGridView ActualCoursesTable;
         private System.Windows.Forms.Label RoleLabel;
@@ -323,14 +320,15 @@
         private System.Windows.Forms.DataGridView AvailableCoursesTable;
         private System.Windows.Forms.Button SignButton;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label MessageLabel;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn RowCheck;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GridColumnCourseId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GridColumnCourseName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GridColumnCourseFaculty;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActualGridColumnCourseId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActualGridColumnCourseName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActualGridColumnCourseFaculty;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RowCheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GridColumnCourseId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GridColumnCourseName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GridColumnCourseFaculty;
+        private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

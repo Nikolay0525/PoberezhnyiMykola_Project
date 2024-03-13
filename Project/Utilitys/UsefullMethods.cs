@@ -1,21 +1,23 @@
-﻿using System;
+﻿using Project.Models;
+using System;
 using System.Reflection;
 using System.Windows.Forms;
+using Project.Forms;
 
 namespace Project
 {
     public class UsefullMethods
     {
-        public static Form CreateForm(string formName, params object[] parameters)
+        public static Form CreateForm(string formName, User user, Course course)
         {
             // Знайдемо тип форми за її назвою
-            Type formType = Type.GetType("Project." + formName);
+            Type formType = Type.GetType("Project.Forms." + formName);
 
             // Перевіримо, чи знайдено тип
             if (formType != null && formType.IsSubclassOf(typeof(Form)))
             {
                 // Створимо екземпляр форми за допомогою конструктора за замовчуванням
-                Form formInstance = (Form)Activator.CreateInstance(formType, parameters);
+                Form formInstance = (Form)Activator.CreateInstance(formType, user, course);
                 return formInstance;
             }
             else

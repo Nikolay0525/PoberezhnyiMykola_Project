@@ -9,55 +9,43 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
-
+using Project.Models;
 
 namespace Project.Forms
 {
     public partial class CourseEnvironmentForm : MaterialForm
     {
-        private readonly string _accessLevel;
-        private readonly string _dbName;
-        public CourseEnvironmentForm(string accessLevel, string courseName, string dbName)
+        private readonly User _user;
+        private readonly Course _course;
+
+        public CourseEnvironmentForm()
         {
-            _dbName = dbName;
-            _accessLevel = accessLevel;
-            this.Text = "Welcome to " + courseName + "!";
             InitializeComponent();
-            DataBaseManager.UpdateJournal(JournalTable);
-            if (_accessLevel == "Student")
+        }
+        public CourseEnvironmentForm(User user, Course course)
+        {
+            _user = user;
+            _course = course;
+            this.Text = "Welcome to " + course.Name + " course!";
+            InitializeComponent();
+            DataBaseManager.UpdateTeacherTable(TeacherTable, course);
+        }
+
+        private void JournalButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            JournalForm journalForm = new JournalForm(_user, _course);
+            journalForm.FormClosed += (s, arg) =>
             {
-                for (int i = 0; i < JournalTable.RowCount; i++)
-                {
-                    JournalTable.Columns[i].ReadOnly = true;
-                }
-            }
-            else 
-            {
-                for (int i = 0; i < JournalTable.RowCount; i++)
-                {
-                    JournalTable.Columns[i].ReadOnly = false;
-                }
-            }
+                Show();
+            };
+            journalForm.Show();
+            return;
         }
 
-        private void CourseEnvironment_Load(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e )
         {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void JournalTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
+            Close();
         }
     }
 }

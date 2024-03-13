@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    class Course
+    public class Course : EnvironmentObject
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
         public string FacultyName { get; set; }
         public User[] Users {  get; set; }
-
+        public Test[] Tests { get; set; }
         public Course() { }
         public Course(string id, string name, string facultyName, User[] users)
         {

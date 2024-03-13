@@ -33,6 +33,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.Updated.0.2.2\lib\MaterialSkin.dll</HintPath>
@@ -78,6 +98,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\BaseTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseTestForm.Designer.cs">
+      <DependentUpon>BaseTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CybersecurityCourseEnvironmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,16 +116,29 @@
     <Compile Include="Forms\CourseEnvironmentForm.Designer.cs">
       <DependentUpon>CourseEnvironmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OopCourseEnvironmentForm.cs">
+    <Compile Include="Forms\JournalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\OopCourseEnvironmentForm.Designer.cs">
-      <DependentUpon>OopCourseEnvironmentForm.cs</DependentUpon>
+    <Compile Include="Forms\JournalForm.Designer.cs">
+      <DependentUpon>JournalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OOPCourseEnvironmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OOPCourseEnvironmentForm.Designer.cs">
+      <DependentUpon>OOPCourseEnvironmentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\EnvironmentObject.cs" />
     <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\Test.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserWithMarks.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utilitys\UsefullMethods.cs" />
     <Compile Include="Utilitys\DataBaseManager.cs" />
     <Compile Include="Forms\UniversityLoginForm.cs">
@@ -122,25 +161,29 @@
     <Compile Include="Forms\UniversityEnvironmentForm.Designer.cs">
       <DependentUpon>UniversityEnvironmentForm.cs</DependentUpon>
     </Compile>
+    <None Include="Images\Cybersecurity.jpg" />
+    <None Include="Images\OOP.png" />
+    <None Include="Images\profile.png" />
     <EmbeddedResource Include="Forms\CourseEnvironmentForm.resx">
       <DependentUpon>CourseEnvironmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OopCourseEnvironmentForm.resx">
-      <DependentUpon>OopCourseEnvironmentForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CybersecurityCourseEnvironmentForm.resx">
+      <DependentUpon>CybersecurityCourseEnvironmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\JournalForm.resx">
+      <DependentUpon>JournalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OOPCourseEnvironmentForm.resx">
+      <DependentUpon>OOPCourseEnvironmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UniversityLoginForm.resx">
       <DependentUpon>UniversityLoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Forms\RegistrationForm.resx">
       <DependentUpon>RegistrationForm.cs</DependentUpon>
     </EmbeddedResource>

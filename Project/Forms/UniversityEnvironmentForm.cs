@@ -2,6 +2,9 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using Project.Models;
+using System.Text.Json;
+using System.Xml.Linq;
 
 namespace Project.Forms
 
@@ -9,50 +12,29 @@ namespace Project.Forms
     public partial class UniversityEnvironmentForm : MaterialForm
     {
         private readonly string _accessLevel;
-        private readonly string _name;
+        private readonly User _user;
 
-        public UniversityEnvironmentForm(string name, string role)
+        public UniversityEnvironmentForm(User user)
         {
             InitializeComponent();
-            _accessLevel = role;
-            _name = name;
-
-            PersonName.Text = name;
-            PersonRole.Text = role;
-
+            _accessLevel = user.Role;
+            _user = user;
+            PersonName.Text = user.Name;
+            PersonRole.Text = user.Role;
             DataBaseManager.DeserializationOfCoursesFromFile(AvailableCoursesTable,DataBaseManager.CoursesDBPath);
-            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable,DataBaseManager.CoursesDBPath, name);
+            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable,DataBaseManager.CoursesDBPath, user.Name);
         }
 
         private void SignButton_Click(object sender, EventArgs e)
         {
-            string[] lines = File.ReadAllLines(DataBaseManager.CoursesDBPath);
-            for (int i = 0; i < AvailableCoursesTable.Rows.Count; i++)
-            {
-                var checkCell = AvailableCoursesTable.Rows[i].Cells[0].Value;
-                if ((bool)checkCell == true && lines[i].IndexOf("," + PersonName.Text) == -1)
-                {
-                    lines[i] += ("," + PersonName.Text);
-                    File.WriteAllLines(DataBaseManager.CoursesDBPath, lines);
-                }
-            }
-            DataBaseManager.UpdateTable(ActualCoursesTable, PersonName.Text);
+            DataBaseManager.SignUserOnCourse(AvailableCoursesTable, _user);
+            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable, DataBaseManager.CoursesDBPath, _user.Name);
         }
 
         private void UnsignButton_Click(object sender, EventArgs e)
         {
-            string[] lines = File.ReadAllLines(DataBaseManager.CoursesDBPath);
-            for (int i = 0; i < AvailableCoursesTable.Rows.Count; i++)
-            {
-                var checkCell = AvailableCoursesTable.Rows[i].Cells[0].Value;
-                if ((bool)checkCell == true && lines[i].IndexOf("," + PersonName.Text) != -1)
-                {
-                    lines[i] = lines[i].Remove(lines[i].IndexOf(',' + PersonName.Text));
-                    File.WriteAllLines(DataBaseManager.CoursesDBPath, lines);
-                }
-
-            }
-            DataBaseManager.UpdateTable(ActualCoursesTable, PersonName.Text);
+            DataBaseManager.UnsignUserFromCourse(AvailableCoursesTable, _user);
+            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable, DataBaseManager.CoursesDBPath, _user.Name);
         }
 
         private void ActualCoursesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,16 +43,15 @@ namespace Project.Forms
             {
                 DataGridViewRow selectedRow = AvailableCoursesTable.Rows[e.RowIndex];
                 string selectedId = selectedRow.Cells["GridColumnCourseId"].Value.ToString();
-                string selectedName = selectedRow.Cells["GridColumnCourseName"].Value.ToString();
-                string[] lines = File.ReadAllLines(DataBaseManager.CoursesDBPath);
-                for (int i = 0; i < lines.Length; i++)
+                string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
+                Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+                foreach (var course in courses)
                 {
-                    if (lines[i].IndexOf(selectedId) != -1)
+                    if (course.Id == selectedId)
                     {
                         Hide();
-                        string[] lineSplit = lines[i].Split(',');
-                        string dbName = DataBaseManager.CreateDB(lineSplit[3]);
-                        Form formInstance = UsefullMethods.CreateForm(lineSplit[3], _accessLevel, selectedName, dbName);
+                        DataBaseManager.CreateDB(course.Name);
+                        Form formInstance = UsefullMethods.CreateForm(course.Name + "CourseEnvironmentForm", _user, course);
                         formInstance.FormClosed += (s, arg) =>
                         {
                             Show();
@@ -81,5 +62,9 @@ namespace Project.Forms
             }
         }
 
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

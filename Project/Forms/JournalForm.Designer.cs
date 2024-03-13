@@ -1,6 +1,6 @@
 ﻿namespace Project.Forms
 {
-    partial class CourseEnvironmentForm
+    partial class JournalForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,76 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.JournalButton = new System.Windows.Forms.Button();
-            this.TeacherTable = new System.Windows.Forms.DataGridView();
+            this.JournalTable = new System.Windows.Forms.DataGridView();
             this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ApplyButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.TeacherTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JournalTable)).BeginInit();
             this.SuspendLayout();
             // 
-            // JournalButton
+            // JournalTable
             // 
-            this.JournalButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.JournalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.JournalButton.Location = new System.Drawing.Point(374, 311);
-            this.JournalButton.Name = "JournalButton";
-            this.JournalButton.Size = new System.Drawing.Size(223, 39);
-            this.JournalButton.TabIndex = 0;
-            this.JournalButton.Text = "Journal";
-            this.JournalButton.UseVisualStyleBackColor = false;
-            this.JournalButton.Click += new System.EventHandler(this.JournalButton_Click);
-            // 
-            // TeacherTable
-            // 
-            this.TeacherTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.TeacherTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TeacherTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.JournalTable.AllowUserToDeleteRows = false;
+            this.JournalTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.JournalTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.JournalTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserName});
-            this.TeacherTable.Location = new System.Drawing.Point(374, 63);
-            this.TeacherTable.Name = "TeacherTable";
-            this.TeacherTable.Size = new System.Drawing.Size(223, 243);
-            this.TeacherTable.TabIndex = 1;
+            this.JournalTable.Location = new System.Drawing.Point(0, 64);
+            this.JournalTable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.JournalTable.Name = "JournalTable";
+            this.JournalTable.Size = new System.Drawing.Size(600, 281);
+            this.JournalTable.TabIndex = 1;
             // 
             // UserName
             // 
-            this.UserName.HeaderText = "Course Teachers ";
+            this.UserName.HeaderText = "Student";
             this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
             this.UserName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.UserName.Width = 180;
+            // 
+            // ApplyButton
+            // 
+            this.ApplyButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ApplyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ApplyButton.Location = new System.Drawing.Point(7, 350);
+            this.ApplyButton.Name = "ApplyButton";
+            this.ApplyButton.Size = new System.Drawing.Size(290, 44);
+            this.ApplyButton.TabIndex = 2;
+            this.ApplyButton.Text = "Apply changes";
+            this.ApplyButton.UseVisualStyleBackColor = false;
+            this.ApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
             // 
             // CloseButton
             // 
             this.CloseButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.Location = new System.Drawing.Point(374, 355);
+            this.CloseButton.Location = new System.Drawing.Point(304, 350);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(223, 40);
-            this.CloseButton.TabIndex = 0;
+            this.CloseButton.Size = new System.Drawing.Size(290, 44);
+            this.CloseButton.TabIndex = 2;
             this.CloseButton.Text = "Go back";
             this.CloseButton.UseVisualStyleBackColor = false;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // CourseEnvironmentForm
+            // JournalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 400);
-            this.Controls.Add(this.TeacherTable);
             this.Controls.Add(this.CloseButton);
-            this.Controls.Add(this.JournalButton);
+            this.Controls.Add(this.ApplyButton);
+            this.Controls.Add(this.JournalTable);
             this.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "CourseEnvironmentForm";
-            ((System.ComponentModel.ISupportInitialize)(this.TeacherTable)).EndInit();
+            this.Name = "JournalForm";
+            ((System.ComponentModel.ISupportInitialize)(this.JournalTable)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button JournalButton;
-        private System.Windows.Forms.DataGridView TeacherTable;
+        private System.Windows.Forms.DataGridView JournalTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
+        private System.Windows.Forms.Button ApplyButton;
         private System.Windows.Forms.Button CloseButton;
     }
 }

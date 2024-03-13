@@ -71,7 +71,7 @@
             // RegisterButton
             // 
             this.RegisterButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RegisterButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RegisterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RegisterButton.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RegisterButton.Location = new System.Drawing.Point(15, 325);
             this.RegisterButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

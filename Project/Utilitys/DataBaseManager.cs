@@ -12,6 +12,9 @@ using System.Text.Json;
 using Project.Forms;
 using System.Configuration;
 using System.Runtime.ConstrainedExecution;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Data;
 
 namespace Project
 {
@@ -43,7 +46,7 @@ namespace Project
             users.Add(new User { Name = userName, Password = password, Role = role });
 
             // Серіалізуємо оновлений список користувачів у JSON рядок
-            string updatedUsersString = JsonSerializer.Serialize(users);
+            string updatedUsersString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
 
             // Записуємо оновлені дані у файл
             File.WriteAllText(UsersDBPath, updatedUsersString);
@@ -53,14 +56,14 @@ namespace Project
 
         public static bool DeserializationOfUsersFromFile(string dbName,string userName)
         {
-            if (!File.Exists(dbName))
+            if (File.ReadAllText(dbName).Length == 0)
             {
-                Console.WriteLine("Файл з користувачами не знайдено.");
-                return false;
+                return true;
             }
 
             // Десеріалізуємо дані з JSON файлу у масив користувачів
             string json = File.ReadAllText(dbName);
+            if(File.ReadAllText(dbName) == null) { Console.WriteLine("Empty file"); }
             User[] users = JsonSerializer.Deserialize<User[]>(json);
             foreach (var user in users)
             {
@@ -71,7 +74,7 @@ namespace Project
             }
             return true;
         }
-        public static string DeserializationOfUsersFromFile(string dbName, string userName, string password)
+        public static User DeserializationOfUsersFromFile(string dbName, string userName, string password)
         {
             if (!File.Exists(dbName))
             {
@@ -86,7 +89,7 @@ namespace Project
             {
                 if(user.Name == userName && user.Password == password)
                 {
-                    return user.Role;
+                    return user;
                 }   
             }
             return null;
@@ -94,24 +97,27 @@ namespace Project
 
         public static void DeserializationOfCoursesFromFile(DataGridView table, string dbName)
         {
+            table.Rows.Clear();
+
             if (!File.Exists(dbName))
             {
                 return;
             }
 
-            // Десеріалізуємо дані з JSON файлу у масив користувачів
+            // Десеріалізуємо дані з JSON файів
             string json = File.ReadAllText(dbName);
             Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
 
             foreach (var course in courses)
             {
-                Console.WriteLine(course.Id[0]);
                 table.Rows.Add(false, course.Id, course.Name, course.FacultyName);
             }
         }
 
         public static void DeserializationOfCoursesFromFile(DataGridView table, string dbName, string userName)
         {
+            table.Rows.Clear();
+
             if (!File.Exists(dbName))
             {
                 return;
@@ -134,27 +140,88 @@ namespace Project
             }
         }
 
-        public static void UpdateTable(DataGridView dataGridView, string name)
+        public static void SignUserOnCourse(DataGridView CoursesTable, User user) // reg
         {
-            while (dataGridView.Rows.Count > 0)
+            List<Course> courses;
+            if (!File.Exists(CoursesDBPath))
             {
-                dataGridView.Rows.RemoveAt(0);
+                return;
             }
-            using (StreamReader CourseDBReader = new StreamReader(CoursesDBPath))
+
+            // Десеріалізуємо дані з JSON файлу у масив користувачів
+            string json = File.ReadAllText(CoursesDBPath);
+            courses = JsonSerializer.Deserialize<Course[]>(json).ToList();
+            for (int i = 0; i<courses.Count; i++)
             {
-                for (string line; (line = CourseDBReader.ReadLine()) != null;)
+                if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
                 {
-                    if (line.IndexOf(name) != -1)
+                    var course = courses[i];
+                    // Створюємо новий масив користувачів, який містить всі існуючі користувачі на курсі разом із новим користувачем
+                    List<User> updatedUsers = new List<User>(course.Users ?? new User[0]); // Якщо Users є null, створюємо пустий масив
+                    foreach(var currentUser in course.Users)
                     {
-                        Console.WriteLine("Yes i find");
-                        string[] lineSplit = line.Split(',');
-                        dataGridView.Rows.Add(lineSplit[0], lineSplit[1], lineSplit[2]);
+                        if (currentUser.Name == user.Name)
+                        {
+                            UsefullMethods.ShowMessage("You already signed on some of checked courses...", "Registration");
+                            return;
+                        }
                     }
+                    updatedUsers.Add(user); // Додаємо нового користувача
+
+                    // Присвоюємо оновлений масив користувачів полю Users об'єкта course
+                    course.Users = updatedUsers.ToArray();
                 }
             }
+
+            Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
+            
+            // Серіалізуємо оновлений список користувачів у JSON рядок
+
+            string updatedUsersString = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
+
+            File.WriteAllText(CoursesDBPath, updatedUsersString);
+        }
+        public static void UnsignUserFromCourse(DataGridView CoursesTable, User user) // reg
+        {
+            List<Course> courses;
+            if (!File.Exists(CoursesDBPath))
+            {
+                return;
+            }
+
+            // Десеріалізуємо дані з JSON файлу у масив користувачів
+            string json = File.ReadAllText(CoursesDBPath);
+            courses = JsonSerializer.Deserialize<Course[]>(json).ToList();
+            for (int i = 0; i<courses.Count; i++)
+            {
+                if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
+                {
+                    var course = courses[i];
+                    // Створюємо новий масив користувачів, який містить всі існуючі користувачі на курсі разом із новим користувачем
+                    List<User> updatedUsers = new List<User>(course.Users ?? new User[0]); // Якщо Users є null, створюємо пустий масив
+                    for (int j = updatedUsers.Count - 1; j >= 0; j--)
+                    {
+                        var currentUser = updatedUsers[j];
+                        if (currentUser.Name == user.Name)
+                        {
+                            updatedUsers.RemoveAt(j);
+                        }
+                    }
+                    // Присвоюємо оновлений масив користувачів полю Users об'єкта course
+                    course.Users = updatedUsers.ToArray();
+                }
+            }
+
+            Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
+            
+            // Серіалізуємо оновлений список користувачів у JSON рядок
+
+            string updatedUsersString = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
+
+            File.WriteAllText(CoursesDBPath, updatedUsersString);
         }
 
-        public static void CreateDB()
+        public static void CreateBaseDB()
         {
             if (!File.Exists(UsersDBPath))
             {
@@ -179,23 +246,43 @@ namespace Project
                 {
                 }
             }
-            return name;
+            return name.Replace(".json","");
         }
 
-        public static void UpdateJournal(DataGridView dataGridView)
+        public static void UpdateTeacherTable(DataGridView table, Course course)
         {
-            DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
-            nameColumn.HeaderText = "Name";
-
-
-            /*dataGridView.Columns.Add(nameColumn);
-            for (int i = 0; i < 7; i++)
+            User[] users = course.Users;
+            foreach (var user in users)
             {
-                DataGridViewTextBoxColumn dayColumn = new DataGridViewTextBoxColumn();
-                dayColumn.HeaderText = "Day" + Convert.ToString(i);
-                dataGridView.Columns.Add(dayColumn);
-            }*/
+                if(user.Role == "Teacher")
+                {
+                    DataGridViewRow newRow = new DataGridViewRow();
 
+                    // Додаємо комірки зі значенням Name для кожного користувача
+                    DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
+                    nameCell.Value = user.Name; // Значення Name користувача
+                    newRow.Cells.Add(nameCell);
+                    table.Rows.Add(newRow);
+                }
+            }
+        }
+        public static void UpdateJournal(DataGridView table, Course course)
+        {
+            User[] users = course.Users;
+            foreach (var user in users)
+            {
+                DataGridViewRow newRow = new DataGridViewRow();
+
+                // Додаємо комірки зі значенням Name для кожного користувача
+                DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
+                nameCell.Value = user.Name; // Значення Name користувача
+                newRow.Cells.Add(nameCell);
+                table.Rows.Add(newRow);
+            }
+        }
+        public static void StudentMark(User user)
+        {
+            UserWithMarks userWithMarks
         }
     }
 }
