@@ -30,45 +30,7 @@ namespace Project.Forms
         /// the contents of this method with the code editor.
         /// </summary>
         /// 
-        private void Question1Check_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-
-            if (checkBox.Checked)
-            {
-                // Зніміть відмітку з інших чекбоксів в групі Question1
-                Question1Check1.Checked = (checkBox == Question1Check1);
-                Question1Check2.Checked = (checkBox == Question1Check2);
-                Question1Check3.Checked = (checkBox == Question1Check3);
-            }
-        }
-
-        private void Question2Check_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-
-            if (checkBox.Checked)
-            {
-                // Зніміть відмітку з інших чекбоксів в групі Question2
-                Question2Check1.Checked = (checkBox == Question2Check1);
-                Question2Check2.Checked = (checkBox == Question2Check2);
-                Question2Check3.Checked = (checkBox == Question2Check3);
-            }
-        }
-
-        private void Question3Check_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-
-            if (checkBox.Checked)
-            {
-                // Зніміть відмітку з інших чекбоксів в групі Question2
-                Question3Check1.Checked = (checkBox == Question3Check1);
-                Question3Check2.Checked = (checkBox == Question3Check2);
-                Question3Check3.Checked = (checkBox == Question3Check3);
-            }
-        }
-
+        
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
@@ -85,6 +47,15 @@ namespace Project.Forms
             this.Question3Check1 = new System.Windows.Forms.CheckBox();
             this.Question3Check2 = new System.Windows.Forms.CheckBox();
             this.Question3Check3 = new System.Windows.Forms.CheckBox();
+            this.Question3Table = new System.Windows.Forms.DataGridView();
+            this.Question2Table = new System.Windows.Forms.DataGridView();
+            this.Question1Table = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.Question3Table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Question2Table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Question1Table)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -140,7 +111,7 @@ namespace Project.Forms
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(331, 29);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Can we trust answers of ChatGPT?";
+            this.label4.Text = "Can we trust Answer of ChatGPT?";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SendButton
@@ -151,7 +122,7 @@ namespace Project.Forms
             this.SendButton.Name = "SendButton";
             this.SendButton.Size = new System.Drawing.Size(474, 56);
             this.SendButton.TabIndex = 3;
-            this.SendButton.Text = "Send answers";
+            this.SendButton.Text = "Send Answer";
             this.SendButton.UseVisualStyleBackColor = false;
             this.SendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
@@ -233,9 +204,9 @@ namespace Project.Forms
             this.Question3Check2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Question3Check2.Location = new System.Drawing.Point(101, 450);
             this.Question3Check2.Name = "Question3Check2";
-            this.Question3Check2.Size = new System.Drawing.Size(327, 24);
+            this.Question3Check2.Size = new System.Drawing.Size(320, 24);
             this.Question3Check2.TabIndex = 2;
-            this.Question3Check2.Text = "We should check his answers before using";
+            this.Question3Check2.Text = "We should check his Answer before using";
             this.Question3Check2.UseVisualStyleBackColor = false;
             this.Question3Check2.CheckedChanged += new System.EventHandler(this.Question3Check_CheckedChanged);
             // 
@@ -245,16 +216,79 @@ namespace Project.Forms
             this.Question3Check3.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Question3Check3.Location = new System.Drawing.Point(137, 480);
             this.Question3Check3.Name = "Question3Check3";
-            this.Question3Check3.Size = new System.Drawing.Size(233, 24);
+            this.Question3Check3.Size = new System.Drawing.Size(226, 24);
             this.Question3Check3.TabIndex = 2;
-            this.Question3Check3.Text = "No, he\'s giving trash answers";
+            this.Question3Check3.Text = "No, he\'s giving trash Answer";
             this.Question3Check3.UseVisualStyleBackColor = false;
             this.Question3Check3.CheckedChanged += new System.EventHandler(this.Question3Check_CheckedChanged);
+            // 
+            // Question3Table
+            // 
+            this.Question3Table.AllowUserToAddRows = false;
+            this.Question3Table.AllowUserToDeleteRows = false;
+            this.Question3Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Question3Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3});
+            this.Question3Table.Location = new System.Drawing.Point(591, 388);
+            this.Question3Table.Name = "Question3Table";
+            this.Question3Table.ReadOnly = true;
+            this.Question3Table.Size = new System.Drawing.Size(273, 117);
+            this.Question3Table.TabIndex = 4;
+            // 
+            // Question2Table
+            // 
+            this.Question2Table.AllowUserToAddRows = false;
+            this.Question2Table.AllowUserToDeleteRows = false;
+            this.Question2Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Question2Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.Question2Table.Location = new System.Drawing.Point(591, 265);
+            this.Question2Table.Name = "Question2Table";
+            this.Question2Table.ReadOnly = true;
+            this.Question2Table.Size = new System.Drawing.Size(273, 117);
+            this.Question2Table.TabIndex = 4;
+            // 
+            // Question1Table
+            // 
+            this.Question1Table.AllowUserToAddRows = false;
+            this.Question1Table.AllowUserToDeleteRows = false;
+            this.Question1Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Question1Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5});
+            this.Question1Table.Location = new System.Drawing.Point(591, 150);
+            this.Question1Table.Name = "Question1Table";
+            this.Question1Table.ReadOnly = true;
+            this.Question1Table.Size = new System.Drawing.Size(273, 109);
+            this.Question1Table.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 130;
             // 
             // Test1CybersecurityCourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.ClientSize = new System.Drawing.Size(893, 700);
+            this.Controls.Add(this.Question1Table);
+            this.Controls.Add(this.Question2Table);
+            this.Controls.Add(this.Question3Table);
             this.Controls.Add(this.SendButton);
             this.Controls.Add(this.Question3Check3);
             this.Controls.Add(this.Question2Check3);
@@ -284,6 +318,12 @@ namespace Project.Forms
             this.Controls.SetChildIndex(this.Question2Check3, 0);
             this.Controls.SetChildIndex(this.Question3Check3, 0);
             this.Controls.SetChildIndex(this.SendButton, 0);
+            this.Controls.SetChildIndex(this.Question3Table, 0);
+            this.Controls.SetChildIndex(this.Question2Table, 0);
+            this.Controls.SetChildIndex(this.Question1Table, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.Question3Table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Question2Table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Question1Table)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +345,11 @@ namespace Project.Forms
         private System.Windows.Forms.CheckBox Question3Check1;
         private System.Windows.Forms.CheckBox Question3Check2;
         private System.Windows.Forms.CheckBox Question3Check3;
+        private DataGridView Question3Table;
+        private DataGridView Question2Table;
+        private DataGridView Question1Table;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

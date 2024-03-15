@@ -11,7 +11,7 @@ namespace Project.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public TestQuestion[] Questions { get; set; }
+        public TestQuestion[] Question { get; set; }
         public Student[] Students { get; set; }
         public Test() { }
         public Test(int id, string description)

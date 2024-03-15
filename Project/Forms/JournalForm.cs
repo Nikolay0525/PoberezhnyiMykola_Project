@@ -13,6 +13,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using Project.Models;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Project.Forms
 {
@@ -60,6 +61,7 @@ namespace Project.Forms
         {
             string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
             Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+
             foreach (var course in courses)
             {
                 if (_course.Name == course.Name)
@@ -68,33 +70,33 @@ namespace Project.Forms
                     {
                         foreach (DataGridViewCell cell in row.Cells)
                         {
-                            Console.WriteLine("I");
                             foreach (var test in course.Tests)
                             {
-                                Console.WriteLine("I`m");
-                                Console.WriteLine(cell.OwningColumn.Name);
-
                                 if (test.Name == cell.OwningColumn.Name)
                                 {
-                                    Console.WriteLine("I`m h");
-                                    foreach (var student in test.Students)
+                                    int rowIndex = cell.RowIndex;
+                                    int columnIndex = cell.ColumnIndex;
+                                    if (rowIndex < test.Students.Length && columnIndex > 0)
                                     {
-                                        Console.WriteLine("I`m he");
+                                        var student = test.Students[rowIndex];
+                                        string cellValue = Convert.ToString(cell.Value);
+
+                                        if (!string.IsNullOrEmpty(cellValue) && int.TryParse(cellValue, out int mark))
                                         {
-                                            string cellValue = Convert.ToString(cell.Value);
-                                            if (!string.IsNullOrEmpty(cellValue) && int.TryParse(cellValue, out int mark))
-                                            {
-                                                student.Mark = mark;
-                                                Console.WriteLine("I`m here");
-                                            }
+                                            student.Mark = mark;
+                                        }
+                                        else
+                                        {
+                                            student.Mark = 0;
                                         }
                                     }
                                 }
-                            }                    
+                            }
                         }
                     }
                 }
             }
+
             string updatedCoursesString = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
 
             File.WriteAllText(DataBaseManager.CoursesDBPath, updatedCoursesString);

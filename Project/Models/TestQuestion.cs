@@ -9,7 +9,7 @@ namespace Project.Models
     public class TestQuestion
     {
         public int Id { get; set; }
-        public QuestionAnswer[] Answers { get; set; }
+        public QuestionAnswer[] Answer { get; set; }
         public TestQuestion() { }
     }
 }

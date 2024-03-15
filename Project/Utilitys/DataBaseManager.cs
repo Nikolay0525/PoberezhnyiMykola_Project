@@ -22,7 +22,7 @@ namespace Project
         public const string UsersDBPath = "UsersDataBase.json";
         public const string CoursesDBPath = "CoursesDataBase.json";
 
-        public static void SerializationUserInFile(string userName, string password, string role) 
+        public static void SerializationUserInFile(string userName, string password, string role)
         {
             List<User> users;
 
@@ -47,7 +47,7 @@ namespace Project
             Console.WriteLine("Користувач був успішно доданий та збережений у файл.");
         }
 
-        public static bool DeserializationOfUsersFromFile(string dbName,string userName)
+        public static bool DeserializationOfUsersFromFile(string dbName, string userName)
         {
             if (File.ReadAllText(dbName).Length == 0)
             {
@@ -55,7 +55,7 @@ namespace Project
             }
 
             string json = File.ReadAllText(dbName);
-            if(File.ReadAllText(dbName) == null) { Console.WriteLine("Empty file"); }
+            if (File.ReadAllText(dbName) == null) { Console.WriteLine("Empty file"); }
             User[] users = JsonSerializer.Deserialize<User[]>(json);
             foreach (var user in users)
             {
@@ -121,14 +121,14 @@ namespace Project
 
             foreach (var course in courses)
             {
-                for(int i = 0; i < course.Users.Length; i++)
+                for (int i = 0; i < course.Users.Length; i++)
                 {
-                    if(userName == course.Users[i].Name)
+                    if (userName == course.Users[i].Name)
                     {
                         table.Rows.Add(course.Id, course.Name, course.FacultyName);
                     }
                 }
-                
+
             }
         }
 
@@ -142,13 +142,13 @@ namespace Project
 
             string json = File.ReadAllText(CoursesDBPath);
             courses = JsonSerializer.Deserialize<Course[]>(json).ToList();
-            for (int i = 0; i<courses.Count; i++)
+            for (int i = 0; i < courses.Count; i++)
             {
                 if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
                 {
                     var course = courses[i];
                     List<User> updatedUsers = new List<User>(course.Users ?? new User[0]);
-                    foreach(var currentUser in course.Users)
+                    foreach (var currentUser in course.Users)
                     {
                         if (currentUser.Name == user.Name)
                         {
@@ -156,19 +156,19 @@ namespace Project
                             return;
                         }
                     }
-                    updatedUsers.Add(user); 
+                    updatedUsers.Add(user);
 
                     course.Users = updatedUsers.ToArray();
                 }
             }
 
             Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
-            
+
             string updatedUsersString = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
 
             File.WriteAllText(CoursesDBPath, updatedUsersString);
         }
-        public static void UnsignUserFromCourse(DataGridView CoursesTable, User user) 
+        public static void UnsignUserFromCourse(DataGridView CoursesTable, User user)
         {
             List<Course> courses;
             if (!File.Exists(CoursesDBPath))
@@ -178,7 +178,7 @@ namespace Project
 
             string json = File.ReadAllText(CoursesDBPath);
             courses = JsonSerializer.Deserialize<Course[]>(json).ToList();
-            for (int i = 0; i<courses.Count; i++)
+            for (int i = 0; i < courses.Count; i++)
             {
                 if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
                 {
@@ -197,7 +197,7 @@ namespace Project
             }
 
             Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
-            
+
             string updatedUsersString = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
 
             File.WriteAllText(CoursesDBPath, updatedUsersString);
@@ -224,7 +224,7 @@ namespace Project
             User[] users = course.Users;
             foreach (var user in users)
             {
-                if(user.Role == "Teacher")
+                if (user.Role == "Teacher")
                 {
                     DataGridViewRow newRow = new DataGridViewRow();
                     DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
@@ -238,7 +238,7 @@ namespace Project
         {
             table.Rows.Clear();
             table.Columns.Clear();
-            
+
             table.Columns.Add("StudentName", "Student");
             if (course.Tests != null && course.Tests.Length > 0)
             {
@@ -263,16 +263,14 @@ namespace Project
                         foreach (var test in course.Tests)
                         {
                             DataGridViewTextBoxCell testCell = new DataGridViewTextBoxCell();
-                            foreach(var student in test.Students)
+                            Student student = test.Students.FirstOrDefault(s => s.Name == user.Name);
+                            if (student != null)
                             {
-                                if (student.Name == user.Name)
-                                {
-                                    testCell.Value = student.Mark;
-                                }
-                                else
-                                {
-                                    testCell.Value = "";
-                                }
+                                testCell.Value = student.Mark;
+                            }
+                            else
+                            {
+                                testCell.Value = "";
                             }
                             newRow.Cells.Add(testCell);
                         }
@@ -280,6 +278,7 @@ namespace Project
                     table.Rows.Add(newRow);
                 }
             }
+
         }
     }
 }
