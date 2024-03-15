@@ -6,17 +6,31 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    class Student : User
+    public sealed class Student
     {
-        public Student()
+        private int _mark;
+        public int Mark
         {
-
+            get
+            {
+                return _mark;
+            }
+            set
+            {
+                
+                if (value < 2 && value != 0 || value > 5 && value != 0)
+                {
+                    throw new ArgumentException("Неприпустима оцінка. Оцінка повинна бути 2, 3, 4 або 5.");
+                }
+                _mark = value;
+            }
         }
-
-        public Student(string name, string password, string role) : base(name, password, role)
+        public string Name { get; set; }
+        public Student() { }
+        public Student(User user) 
         {
-
+            Name = user.Name;
+            Mark = 0;
         }
-
     }
 }

@@ -5,19 +5,18 @@ using System.Windows.Forms;
 using Project.Models;
 using System.Text.Json;
 using System.Xml.Linq;
+using Project.Utilitys;
 
 namespace Project.Forms
 
 {
     public partial class UniversityEnvironmentForm : MaterialForm
     {
-        private readonly string _accessLevel;
         private readonly User _user;
 
         public UniversityEnvironmentForm(User user)
         {
             InitializeComponent();
-            _accessLevel = user.Role;
             _user = user;
             PersonName.Text = user.Name;
             PersonRole.Text = user.Role;
@@ -41,17 +40,17 @@ namespace Project.Forms
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                DataGridViewRow selectedRow = AvailableCoursesTable.Rows[e.RowIndex];
-                string selectedId = selectedRow.Cells["GridColumnCourseId"].Value.ToString();
+                DataGridViewRow selectedRow = ActualCoursesTable.Rows[e.RowIndex];
+                string selectedId = selectedRow.Cells["ActualGridColumnCourseId"].Value.ToString();
                 string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
                 Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+                Console.WriteLine(courses[1].Tests[0].Id);
                 foreach (var course in courses)
                 {
-                    if (course.Id == selectedId)
+                    if (course.Id == int.Parse(selectedId))
                     {
                         Hide();
-                        DataBaseManager.CreateDB(course.Name);
-                        Form formInstance = UsefullMethods.CreateForm(course.Name + "CourseEnvironmentForm", _user, course);
+                        Form formInstance = FormCreater.CreateForm(course.Name + "CourseEnvironmentForm", _user, course);
                         formInstance.FormClosed += (s, arg) =>
                         {
                             Show();

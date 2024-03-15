@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public class EnvironmentObject
+    public class TestQuestion
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public EnvironmentObject() { }
+        public QuestionAnswer[] Answers { get; set; }
+        public TestQuestion() { }
     }
 }

@@ -22,5 +22,12 @@ namespace Project.Models
             Password = password;
             Role = role;
         }
+
+        public User(User user)
+        {
+            Name = user.Name;
+            Password = user.Password;
+            Role = user.Role;
+        }
     }
 }

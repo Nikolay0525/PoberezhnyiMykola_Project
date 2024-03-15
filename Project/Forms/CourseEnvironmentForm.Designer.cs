@@ -49,12 +49,15 @@
             // 
             // TeacherTable
             // 
+            this.TeacherTable.AllowUserToAddRows = false;
+            this.TeacherTable.AllowUserToDeleteRows = false;
             this.TeacherTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.TeacherTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TeacherTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserName});
             this.TeacherTable.Location = new System.Drawing.Point(374, 63);
             this.TeacherTable.Name = "TeacherTable";
+            this.TeacherTable.ReadOnly = true;
             this.TeacherTable.Size = new System.Drawing.Size(223, 243);
             this.TeacherTable.TabIndex = 1;
             // 
@@ -62,6 +65,7 @@
             // 
             this.UserName.HeaderText = "Course Teachers ";
             this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
             this.UserName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.UserName.Width = 180;
             // 

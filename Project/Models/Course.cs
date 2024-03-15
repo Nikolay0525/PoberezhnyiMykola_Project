@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public class Course : EnvironmentObject
+    public sealed class Course : EnvironmentObject
     {
         public string FacultyName { get; set; }
         public User[] Users {  get; set; }
         public Test[] Tests { get; set; }
         public Course() { }
-        public Course(string id, string name, string facultyName, User[] users)
+        public Course(int id, string name, string facultyName)
         {
             Id = id;
             Name = name;
             FacultyName = facultyName;
-            Users = users;
         }
     }
 }

@@ -37,6 +37,7 @@
             // 
             // JournalTable
             // 
+            this.JournalTable.AllowUserToAddRows = false;
             this.JournalTable.AllowUserToDeleteRows = false;
             this.JournalTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.JournalTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -52,7 +53,6 @@
             // 
             this.UserName.HeaderText = "Student";
             this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
             this.UserName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.UserName.Width = 180;
             // 

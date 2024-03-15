@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
@@ -17,13 +18,28 @@ namespace Project.Forms
     {
         private readonly User _user;
         private readonly Course _course;
-        public BaseTestForm(User user, Course course)
+        private readonly int _testId;
+
+        public BaseTestForm() 
         {
+            InitializeComponent();
+        }
+        public BaseTestForm(User user, Course course, int testId)
+        {
+            Text = course.Name;
             _user = user;
             _course = course;
+            _testId = testId;
             InitializeComponent();
         }
 
-
+        private void SendButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
