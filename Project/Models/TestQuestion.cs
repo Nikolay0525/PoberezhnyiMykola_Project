@@ -6,10 +6,27 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public class TestQuestion
+    public sealed class TestQuestion : EnvironmentObject
     {
-        public int Id { get; set; }
         public QuestionAnswer[] Answer { get; set; }
         public TestQuestion() { }
+
+        public override string GetJson()
+        {
+            var json = "{";
+            if(Answer?.Length > 0)
+            {
+                json = " answer: [";
+                foreach(var answer in Answer)
+                {
+                    json += answer.GetJson() + ",";
+                }
+
+                json += "], ";
+            }
+            json += " id: " + Id + "}";
+
+            return json;
+        }
     }
 }

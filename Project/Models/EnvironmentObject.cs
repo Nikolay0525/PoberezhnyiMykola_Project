@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace Project.Models
 {
-    public class EnvironmentObject
+    public abstract class EnvironmentObject
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public EnvironmentObject() { }
+        public virtual string GetJson()
+        {
+            return "";
+        }
     }
 }

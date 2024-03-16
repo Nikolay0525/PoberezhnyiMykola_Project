@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public class Test
+    public sealed class Test : EnvironmentObject
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public TestQuestion[] Question { get; set; }
@@ -18,6 +17,36 @@ namespace Project.Models
         {
             Id = id;
             Description = description;
+        }
+
+        public override string GetJson()
+        {
+            var json = "{ name: " + Name + ", Description: " + Description + ",";
+            if (Question?.Length > 0)
+            {
+                json = " question: [";
+                foreach (var question in Question)
+                {
+                    json += question.GetJson() + ",";
+                }
+
+                json += "], ";
+            }
+
+            if (Students?.Length > 0)
+            {
+                json = " students: [";
+
+                foreach (var student in Students)
+                {
+                    json += student.GetJson() + ",";
+                }
+
+                json += "], ";
+            }
+            json += " id: " + Id + "}";
+
+            return json;
         }
     }
 }

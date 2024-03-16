@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public sealed class Student
+    public sealed class Student : EnvironmentObject
     {
         private int _mark;
+        
         public int Mark
         {
             get
@@ -26,11 +27,17 @@ namespace Project.Models
             }
         }
         public string Name { get; set; }
+
         public Student() { }
-        public Student(User user) 
+        public Student(User User) 
         {
-            Name = user.Name;
+            Name = User.Name;
             Mark = 0;
+        }
+
+        public override string GetJson()
+        {
+            return "{name: " + Name + ", mark: " + Mark + "}";
         }
     }
 }

@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public class User
+    public sealed class User : EnvironmentObject
     {
         public string Name { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-
-        public User()
-        {
-        }
 
         public User(string name, string password, string role)
         {
@@ -22,12 +18,18 @@ namespace Project.Models
             Password = password;
             Role = role;
         }
-
-        public User(User user)
+        public User()
         {
-            Name = user.Name;
-            Password = user.Password;
-            Role = user.Role;
+        }
+        public User(User User)
+        {
+            Name = User.Name;
+            Password = User.Password;
+            Role = User.Role;
+        }
+        public override string GetJson()
+        {
+            return "{name: " + Name + ", password: " + Password + ", role: " + Role + "}";
         }
     }
 }

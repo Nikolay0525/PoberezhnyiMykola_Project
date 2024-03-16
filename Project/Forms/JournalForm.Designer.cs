@@ -48,6 +48,7 @@
             this.JournalTable.Name = "JournalTable";
             this.JournalTable.Size = new System.Drawing.Size(600, 281);
             this.JournalTable.TabIndex = 1;
+            this.JournalTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.JournalTable_CellContentClick);
             // 
             // UserName
             // 
@@ -88,7 +89,7 @@
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.ApplyButton);
             this.Controls.Add(this.JournalTable);
-            this.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "JournalForm";
             ((System.ComponentModel.ISupportInitialize)(this.JournalTable)).EndInit();

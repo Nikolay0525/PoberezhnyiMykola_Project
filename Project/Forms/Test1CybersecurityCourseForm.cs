@@ -8,12 +8,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace Project.Forms
 {
-    public partial class Test1CybersecurityCourseForm : Project.Forms.BaseTestForm
+    public sealed partial class Test1CybersecurityCourseForm : Project.Forms.BaseTestForm
     {
         private readonly User _user;
         private readonly Course _course;
@@ -22,17 +23,17 @@ namespace Project.Forms
         {
             InitializeComponent();
         }
-        public Test1CybersecurityCourseForm(User user, Course course, int testId) : base(user, course, testId)
+        public Test1CybersecurityCourseForm(User User, Course course, int testId) : base(User, course, testId)
         {
-            _user = user;
+            _user = User;
             _course = course;
             _testId = testId;
             InitializeComponent();
 
             string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
-            Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
             Console.WriteLine(courses[1].Tests[_testId - 1].Question[0].Id); 
-            if (user.Role != "Teacher")
+            if (User.Role != "Teacher")
             {
                 Question1Table.Visible = false;
                 Question2Table.Visible = false;
@@ -148,7 +149,7 @@ namespace Project.Forms
                 }
                 Student student = new Student(_user);
                 string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
-                Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+                Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
                 Test test = courses[_course.Id - 1].Tests[_testId - 1];
                 if (test.Students != null)
                 {
@@ -196,7 +197,7 @@ namespace Project.Forms
 
                 courses[_course.Id - 1].Tests[_testId - 1] = test;
 
-                string updatedCourses = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
+                string updatedCourses = JsonConvert.SerializeObject(courses);
 
                 File.WriteAllText(DataBaseManager.CoursesDBPath, updatedCourses);
                 UsefullMethods.ShowMessage("Successful! Now wait for assessment...", Text);

@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Project.Forms
 {
-    public partial class CybersecurityCourseEnvironmentForm : Project.Forms.CourseEnvironmentForm
+    public sealed partial class CybersecurityCourseEnvironmentForm : Project.Forms.CourseEnvironmentForm
     {
         private readonly User _user;
         private readonly Course _course;
 
-        public CybersecurityCourseEnvironmentForm(User user, Course course) : base(user, course)
+        public CybersecurityCourseEnvironmentForm(User User, Course course) : base(User, course)
         {
-            _user = user;
+            _user = User;
             _course = course;
             InitializeComponent();
         }
@@ -25,6 +25,7 @@ namespace Project.Forms
         private void Exam1Button_Click(object sender, EventArgs e)
         {
             Hide();
+
             Form formInstance = FormCreater.CreateTestForm("Test1" + _course.Name + "CourseForm", _user, _course, _course.Tests[0].Id);
             formInstance.FormClosed += (s, arg) =>
             {

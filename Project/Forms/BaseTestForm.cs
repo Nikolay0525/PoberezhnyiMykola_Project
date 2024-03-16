@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
@@ -24,10 +24,10 @@ namespace Project.Forms
         {
             InitializeComponent();
         }
-        public BaseTestForm(User user, Course course, int testId)
+        public BaseTestForm(User User, Course course, int testId)
         {
             Text = course.Name;
-            _user = user;
+            _user = User;
             _course = course;
             _testId = testId;
             InitializeComponent();

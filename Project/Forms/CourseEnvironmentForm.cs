@@ -22,9 +22,9 @@ namespace Project.Forms
         {
             InitializeComponent();
         }
-        public CourseEnvironmentForm(User user, Course course)
+        public CourseEnvironmentForm(User User, Course course)
         {
-            _user = user;
+            _user = User;
             _course = course;
             this.Text = "Welcome to " + course.Name + " course!";
             InitializeComponent();

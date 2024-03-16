@@ -6,14 +6,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Project.Models;
 using System.Xml.Linq;
+
 using static System.Net.Mime.MediaTypeNames;
+using Newtonsoft.Json;
 
 namespace Project.Forms
 {
@@ -21,13 +23,13 @@ namespace Project.Forms
     {
         private readonly User _user;
         private readonly Course _course;
-        public JournalForm(User user, Course course)
+        public JournalForm(User User, Course course)
         {
-            _user = user;
+            _user = User;
             _course = course;
             this.Text = "Welcome to " + course.Name + " journal!";
             string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
-            Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
             InitializeComponent();
             foreach (var courseFromDB in courses)
             {
@@ -60,7 +62,7 @@ namespace Project.Forms
         private void ApplyButton_Click(object sender, EventArgs e)
         {
             string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
-            Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
 
             foreach (var course in courses)
             {
@@ -97,9 +99,14 @@ namespace Project.Forms
                 }
             }
 
-            string updatedCoursesString = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
+            string updatedCoursesString = JsonConvert.SerializeObject(courses);
 
             File.WriteAllText(DataBaseManager.CoursesDBPath, updatedCoursesString);
+        }
+
+        private void JournalTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if(row)
         }
     }
 }

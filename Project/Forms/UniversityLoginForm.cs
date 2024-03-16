@@ -37,11 +37,11 @@ namespace Project.Forms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            User user = DataBaseManager.DeserializationOfUsersFromFile(DataBaseManager.UsersDBPath,UsernameTextBox.Text, PasswordTextBox.Text);
-            if (user != null)
+            User User = DataBaseManager.DeserializationOfUsersFromFile(DataBaseManager.UsersDBPath,UsernameTextBox.Text, PasswordTextBox.Text);
+            if (User != null)
             {
                 Hide();
-                UniversityEnvironmentForm universityEnvironmentForm = new UniversityEnvironmentForm(user);
+                UniversityEnvironmentForm universityEnvironmentForm = new UniversityEnvironmentForm(User);
                 universityEnvironmentForm.FormClosed += (s, arg) =>
                 {
                     Show();

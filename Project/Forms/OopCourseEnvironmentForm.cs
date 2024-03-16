@@ -10,9 +10,9 @@ using Project.Models;
 
 namespace Project.Forms
 {
-    public partial class OOPCourseEnvironmentForm : Project.Forms.CourseEnvironmentForm
+    public sealed partial class OOPCourseEnvironmentForm : Project.Forms.CourseEnvironmentForm
     {
-        public OOPCourseEnvironmentForm(User user, Course course) : base(user, course)
+        public OOPCourseEnvironmentForm(User User, Course course) : base(User, course)
         {
             InitializeComponent();
         }

@@ -3,9 +3,10 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using Project.Models;
-using System.Text.Json;
+using Newtonsoft;
 using System.Xml.Linq;
 using Project.Utilitys;
+using Newtonsoft.Json;
 
 namespace Project.Forms
 
@@ -14,14 +15,14 @@ namespace Project.Forms
     {
         private readonly User _user;
 
-        public UniversityEnvironmentForm(User user)
+        public UniversityEnvironmentForm(User User)
         {
             InitializeComponent();
-            _user = user;
-            PersonName.Text = user.Name;
-            PersonRole.Text = user.Role;
+            _user = User;
+            PersonName.Text = User.Name;
+            PersonRole.Text = User.Role;
             DataBaseManager.DeserializationOfCoursesFromFile(AvailableCoursesTable,DataBaseManager.CoursesDBPath);
-            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable,DataBaseManager.CoursesDBPath, user.Name);
+            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable,DataBaseManager.CoursesDBPath, User.Name);
         }
 
         private void SignButton_Click(object sender, EventArgs e)
@@ -43,8 +44,8 @@ namespace Project.Forms
                 DataGridViewRow selectedRow = ActualCoursesTable.Rows[e.RowIndex];
                 string selectedId = selectedRow.Cells["ActualGridColumnCourseId"].Value.ToString();
                 string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
-                Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
-                Console.WriteLine(courses[1].Tests[0].Id);
+                Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
+               // Console.WriteLine(courses[1].Tests[0].Id);
                 foreach (var course in courses)
                 {
                     if (course.Id == int.Parse(selectedId))
@@ -58,6 +59,7 @@ namespace Project.Forms
                         formInstance.Show();
                     }
                 }
+
             }
         }
 

@@ -7,20 +7,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Project.Models;
-using System.Text.Json.Serialization;
-using System.Text.Json;
+using Newtonsoft;
 using Project.Forms;
 using System.Configuration;
 using System.Runtime.ConstrainedExecution;
 using System.Xml.Linq;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace Project
 {
     public static class DataBaseManager
     {
-        public const string UsersDBPath = "UsersDataBase.json";
-        public const string CoursesDBPath = "CoursesDataBase.json";
+        public const string UsersDBPath = "../UsersDataBase.json";
+        public const string CoursesDBPath = "../CoursesDataBase.json";
 
         public static void SerializationUserInFile(string userName, string password, string role)
         {
@@ -31,7 +31,7 @@ namespace Project
             if (File.Exists(UsersDBPath) && !string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)))
             {
                 string usersJson = File.ReadAllText(UsersDBPath);
-                users = JsonSerializer.Deserialize<List<User>>(usersJson);
+                users = JsonConvert.DeserializeObject<List<User>>(usersJson);
             }
             else
             {
@@ -40,7 +40,7 @@ namespace Project
 
             users.Add(new User { Name = userName, Password = password, Role = role });
 
-            string updatedUsersString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            string updatedUsersString = JsonConvert.SerializeObject(users);
 
             File.WriteAllText(UsersDBPath, updatedUsersString);
 
@@ -56,10 +56,10 @@ namespace Project
 
             string json = File.ReadAllText(dbName);
             if (File.ReadAllText(dbName) == null) { Console.WriteLine("Empty file"); }
-            User[] users = JsonSerializer.Deserialize<User[]>(json);
-            foreach (var user in users)
+            User[] users = JsonConvert.DeserializeObject<User[]>(json);
+            foreach (var User in users)
             {
-                if (user.Name == userName)
+                if (User.Name == userName)
                 {
                     return false;
                 }
@@ -77,12 +77,12 @@ namespace Project
             string json = File.ReadAllText(dbName);
             if (json != "")
             {
-                User[] users = JsonSerializer.Deserialize<User[]>(json);
-                foreach (var user in users)
+                User[] users = JsonConvert.DeserializeObject<User[]>(json);
+                foreach (var User in users)
                 {
-                    if (user.Name == userName && user.Password == password)
+                    if (User.Name == userName && User.Password == password)
                     {
-                        return user;
+                        return User;
                     }
                 }
             }
@@ -99,7 +99,7 @@ namespace Project
             }
 
             string json = File.ReadAllText(dbName);
-            Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
 
             foreach (var course in courses)
             {
@@ -117,7 +117,7 @@ namespace Project
             }
 
             string json = File.ReadAllText(dbName);
-            Course[] courses = JsonSerializer.Deserialize<Course[]>(json);
+            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
 
             foreach (var course in courses)
             {
@@ -132,7 +132,7 @@ namespace Project
             }
         }
 
-        public static void SignUserOnCourse(DataGridView CoursesTable, User user)
+        public static void SignUserOnCourse(DataGridView CoursesTable, User User)
         {
             List<Course> courses;
             if (!File.Exists(CoursesDBPath))
@@ -141,7 +141,7 @@ namespace Project
             }
 
             string json = File.ReadAllText(CoursesDBPath);
-            courses = JsonSerializer.Deserialize<Course[]>(json).ToList();
+            courses = JsonConvert.DeserializeObject<Course[]>(json).ToList();
             for (int i = 0; i < courses.Count; i++)
             {
                 if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
@@ -150,13 +150,13 @@ namespace Project
                     List<User> updatedUsers = new List<User>(course.Users ?? new User[0]);
                     foreach (var currentUser in course.Users)
                     {
-                        if (currentUser.Name == user.Name)
+                        if (currentUser.Name == User.Name)
                         {
                             UsefullMethods.ShowMessage("You already signed on some of checked courses...", "Registration");
                             return;
                         }
                     }
-                    updatedUsers.Add(user);
+                    updatedUsers.Add(User);
 
                     course.Users = updatedUsers.ToArray();
                 }
@@ -164,11 +164,11 @@ namespace Project
 
             Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
 
-            string updatedUsersString = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
+            string updatedUsersString = JsonConvert.SerializeObject(courses);
 
             File.WriteAllText(CoursesDBPath, updatedUsersString);
         }
-        public static void UnsignUserFromCourse(DataGridView CoursesTable, User user)
+        public static void UnsignUserFromCourse(DataGridView CoursesTable, User User)
         {
             List<Course> courses;
             if (!File.Exists(CoursesDBPath))
@@ -177,7 +177,7 @@ namespace Project
             }
 
             string json = File.ReadAllText(CoursesDBPath);
-            courses = JsonSerializer.Deserialize<Course[]>(json).ToList();
+            courses = JsonConvert.DeserializeObject<Course[]>(json).ToList();
             for (int i = 0; i < courses.Count; i++)
             {
                 if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
@@ -187,7 +187,7 @@ namespace Project
                     for (int j = updatedUsers.Count - 1; j >= 0; j--)
                     {
                         var currentUser = updatedUsers[j];
-                        if (currentUser.Name == user.Name)
+                        if (currentUser.Name == User.Name)
                         {
                             updatedUsers.RemoveAt(j);
                         }
@@ -198,7 +198,7 @@ namespace Project
 
             Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
 
-            string updatedUsersString = JsonSerializer.Serialize(courses, new JsonSerializerOptions { WriteIndented = true });
+            string updatedUsersString = JsonConvert.SerializeObject(courses);
 
             File.WriteAllText(CoursesDBPath, updatedUsersString);
         }
@@ -222,13 +222,13 @@ namespace Project
         public static void UpdateTeacherTable(DataGridView table, Course course)
         {
             User[] users = course.Users;
-            foreach (var user in users)
+            foreach (var User in users)
             {
-                if (user.Role == "Teacher")
+                if (User.Role == "Teacher")
                 {
                     DataGridViewRow newRow = new DataGridViewRow();
                     DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
-                    nameCell.Value = user.Name;
+                    nameCell.Value = User.Name;
                     newRow.Cells.Add(nameCell);
                     table.Rows.Add(newRow);
                 }
@@ -248,14 +248,14 @@ namespace Project
                 }
             }
 
-            foreach (var user in course.Users)
+            foreach (var User in course.Users)
             {
-                if (user.Role == "Student")
+                if (User.Role == "Student")
                 {
                     DataGridViewRow newRow = new DataGridViewRow();
 
                     DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
-                    nameCell.Value = user.Name;
+                    nameCell.Value = User.Name;
                     newRow.Cells.Add(nameCell);
 
                     if (course.Tests != null && course.Tests.Length > 0)
@@ -263,7 +263,7 @@ namespace Project
                         foreach (var test in course.Tests)
                         {
                             DataGridViewTextBoxCell testCell = new DataGridViewTextBoxCell();
-                            Student student = test.Students.FirstOrDefault(s => s.Name == user.Name);
+                            Student student = test.Students.FirstOrDefault(s => s.Name == User.Name);
                             if (student != null)
                             {
                                 testCell.Value = student.Mark;
