@@ -15,16 +15,16 @@ namespace Project.Forms
 {
     public partial class CourseEnvironmentForm : MaterialForm
     {
-        private readonly User _user;
-        private readonly Course _course;
+        protected readonly User _user;
+        protected readonly Course _course;
 
         public CourseEnvironmentForm()
         {
             InitializeComponent();
         }
-        public CourseEnvironmentForm(User User, Course course)
+        public CourseEnvironmentForm(User user, Course course)
         {
-            _user = User;
+            _user = user;
             _course = course;
             this.Text = "Welcome to " + course.Name + " course!";
             InitializeComponent();

@@ -7,6 +7,7 @@ using Newtonsoft;
 using System.Xml.Linq;
 using Project.Utilitys;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Project.Forms
 
@@ -15,26 +16,26 @@ namespace Project.Forms
     {
         private readonly User _user;
 
-        public UniversityEnvironmentForm(User User)
+        public UniversityEnvironmentForm(User user)
         {
             InitializeComponent();
-            _user = User;
-            PersonName.Text = User.Name;
-            PersonRole.Text = User.Role;
-            DataBaseManager.DeserializationOfCoursesFromFile(AvailableCoursesTable,DataBaseManager.CoursesDBPath);
-            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable,DataBaseManager.CoursesDBPath, User.Name);
+            _user = user;
+            PersonName.Text = user.Name;
+            PersonRole.Text = user.Role;
+            DataBaseManager.UpdateTableWithAvailableCourses(AvailableCoursesTable);
+            DataBaseManager.UpdateTableWithActualCourses(ActualCoursesTable, user.Name);
         }
 
         private void SignButton_Click(object sender, EventArgs e)
         {
             DataBaseManager.SignUserOnCourse(AvailableCoursesTable, _user);
-            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable, DataBaseManager.CoursesDBPath, _user.Name);
+            DataBaseManager.UpdateTableWithActualCourses(ActualCoursesTable, _user.Name);
         }
 
         private void UnsignButton_Click(object sender, EventArgs e)
         {
             DataBaseManager.UnsignUserFromCourse(AvailableCoursesTable, _user);
-            DataBaseManager.DeserializationOfCoursesFromFile(ActualCoursesTable, DataBaseManager.CoursesDBPath, _user.Name);
+            DataBaseManager.UpdateTableWithActualCourses(ActualCoursesTable, _user.Name);
         }
 
         private void ActualCoursesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -43,9 +44,7 @@ namespace Project.Forms
             {
                 DataGridViewRow selectedRow = ActualCoursesTable.Rows[e.RowIndex];
                 string selectedId = selectedRow.Cells["ActualGridColumnCourseId"].Value.ToString();
-                string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
-                Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
-               // Console.WriteLine(courses[1].Tests[0].Id);
+                List<Course> courses = DataBaseManager.MakeCoursesList();
                 foreach (var course in courses)
                 {
                     if (course.Id == int.Parse(selectedId))

@@ -16,18 +16,18 @@ namespace Project.Forms
 {
     public partial class BaseTestForm : MaterialForm
     {
-        private readonly User _user;
-        private readonly Course _course;
-        private readonly int _testId;
+        protected readonly User _user;
+        protected readonly Course _course;
+        protected readonly int _testId;
 
         public BaseTestForm() 
         {
             InitializeComponent();
         }
-        public BaseTestForm(User User, Course course, int testId)
+        public BaseTestForm(User user, Course course, int testId)
         {
             Text = course.Name;
-            _user = User;
+            _user = user;
             _course = course;
             _testId = testId;
             InitializeComponent();

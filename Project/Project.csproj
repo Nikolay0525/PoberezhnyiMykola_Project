@@ -147,6 +147,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilitys\FormCreater.cs" />
+    <Compile Include="Utilitys\Interfaces.cs" />
+    <Compile Include="Utilitys\MaterialFormSkinChanger.cs" />
     <Compile Include="Utilitys\UsefullMethods.cs" />
     <Compile Include="Utilitys\DataBaseManager.cs" />
     <Compile Include="Forms\UniversityLoginForm.cs">

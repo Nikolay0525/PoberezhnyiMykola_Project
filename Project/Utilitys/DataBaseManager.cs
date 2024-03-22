@@ -14,70 +14,73 @@ using System.Runtime.ConstrainedExecution;
 using System.Xml.Linq;
 using System.Data;
 using Newtonsoft.Json;
+using Project.Utilitys;
 
 namespace Project
 {
     public static class DataBaseManager
     {
-        public const string UsersDBPath = "../UsersDataBase.json";
-        public const string CoursesDBPath = "../CoursesDataBase.json";
+        public const string UsersDBPath = "../../UsersDataBase.json";
+        public const string CoursesDBPath = "../../CoursesDataBase.json";
 
-        public static void SerializationUserInFile(string userName, string password, string role)
+        public static List<User> MakeUsersList()
         {
-            List<User> users;
+            List<User> users = null;
 
-            Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
-
-            if (File.Exists(UsersDBPath) && !string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)))
+            if (File.Exists(UsersDBPath) && new FileInfo(UsersDBPath).Length > 0)
             {
-                string usersJson = File.ReadAllText(UsersDBPath);
-                users = JsonConvert.DeserializeObject<List<User>>(usersJson);
-            }
-            else
-            {
-                users = new List<User>();
+                string json = File.ReadAllText(UsersDBPath);
+                users = JsonConvert.DeserializeObject<List<User>>(json);
             }
 
-            users.Add(new User { Name = userName, Password = password, Role = role });
+            return users ?? new List<User>();
+        }
+
+        public static List<Course> MakeCoursesList()
+        {
+            List<Course> courses = null;
+
+            if (File.Exists(CoursesDBPath) && new FileInfo(CoursesDBPath).Length > 0)
+            {
+                string json = File.ReadAllText(CoursesDBPath);
+                courses = JsonConvert.DeserializeObject<List<Course>>(json);
+
+            }
+            return courses ?? new List<Course>();
+        }
+
+        public static void RegistrationUserInFile(User user)
+        {
+            List<User> users = MakeUsersList();
+
+            users.Add(user);
 
             string updatedUsersString = JsonConvert.SerializeObject(users);
 
             File.WriteAllText(UsersDBPath, updatedUsersString);
-
-            Console.WriteLine("Користувач був успішно доданий та збережений у файл.");
         }
 
-        public static bool DeserializationOfUsersFromFile(string dbName, string userName)
+        
+        public static bool UserExist(string userName)
         {
-            if (File.ReadAllText(dbName).Length == 0)
+            if (File.ReadAllText(UsersDBPath) != null) 
             {
-                return true;
-            }
-
-            string json = File.ReadAllText(dbName);
-            if (File.ReadAllText(dbName) == null) { Console.WriteLine("Empty file"); }
-            User[] users = JsonConvert.DeserializeObject<User[]>(json);
-            foreach (var User in users)
-            {
-                if (User.Name == userName)
+                List<User> users = MakeUsersList();
+                foreach (var User in users)
                 {
-                    return false;
+                    if (User.Name == userName)
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
         }
-        public static User DeserializationOfUsersFromFile(string dbName, string userName, string password)
+        public static User DeserializationOfUsersWithPassword(string dbName, string userName, string password)
         {
-            if (File.ReadAllText(dbName).Length == 0)
+            if (File.ReadAllText(UsersDBPath) != null)
             {
-                Console.WriteLine("Файл з користувачами не знайдено.");
-                return null;
-            }
-
-            string json = File.ReadAllText(dbName);
-            if (json != "")
-            {
-                User[] users = JsonConvert.DeserializeObject<User[]>(json);
+                List<User> users = MakeUsersList();
                 foreach (var User in users)
                 {
                     if (User.Name == userName && User.Password == password)
@@ -89,17 +92,11 @@ namespace Project
             return null;
         }
 
-        public static void DeserializationOfCoursesFromFile(DataGridView table, string dbName)
+        public static void UpdateTableWithAvailableCourses(DataGridView table)
         {
             table.Rows.Clear();
 
-            if (!File.Exists(dbName))
-            {
-                return;
-            }
-
-            string json = File.ReadAllText(dbName);
-            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
+            List<Course> courses = MakeCoursesList();
 
             foreach (var course in courses)
             {
@@ -107,17 +104,11 @@ namespace Project
             }
         }
 
-        public static void DeserializationOfCoursesFromFile(DataGridView table, string dbName, string userName)
+        public static void UpdateTableWithActualCourses(DataGridView table, string userName)
         {
             table.Rows.Clear();
 
-            if (!File.Exists(dbName))
-            {
-                return;
-            }
-
-            string json = File.ReadAllText(dbName);
-            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
+            List<Course> courses = MakeCoursesList();
 
             foreach (var course in courses)
             {
@@ -128,20 +119,12 @@ namespace Project
                         table.Rows.Add(course.Id, course.Name, course.FacultyName);
                     }
                 }
-
             }
         }
 
         public static void SignUserOnCourse(DataGridView CoursesTable, User User)
         {
-            List<Course> courses;
-            if (!File.Exists(CoursesDBPath))
-            {
-                return;
-            }
-
-            string json = File.ReadAllText(CoursesDBPath);
-            courses = JsonConvert.DeserializeObject<Course[]>(json).ToList();
+            List<Course> courses = MakeCoursesList();
             for (int i = 0; i < courses.Count; i++)
             {
                 if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
@@ -170,14 +153,7 @@ namespace Project
         }
         public static void UnsignUserFromCourse(DataGridView CoursesTable, User User)
         {
-            List<Course> courses;
-            if (!File.Exists(CoursesDBPath))
-            {
-                return;
-            }
-
-            string json = File.ReadAllText(CoursesDBPath);
-            courses = JsonConvert.DeserializeObject<Course[]>(json).ToList();
+            List<Course> courses = MakeCoursesList();
             for (int i = 0; i < courses.Count; i++)
             {
                 if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
@@ -221,6 +197,9 @@ namespace Project
 
         public static void UpdateTeacherTable(DataGridView table, Course course)
         {
+            table.Rows.Clear();
+            table.Columns.Clear();
+
             User[] users = course.Users;
             foreach (var User in users)
             {

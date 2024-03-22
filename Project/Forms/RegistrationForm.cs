@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
-
+using Project.Models;
 
 namespace Project.Forms
 {
@@ -20,14 +20,14 @@ namespace Project.Forms
         {
             InitializeComponent();
         }
-
+        
         private void RegistrateAccountButton_Click(object sender, EventArgs e)
         {
             
-            if (DataBaseManager.DeserializationOfUsersFromFile(DataBaseManager.UsersDBPath,UsernameTextBox.Text))
+            if (DataBaseManager.UserExist(UsernameTextBox.Text))
             {
                 var role = (TeacherCheck.Checked == true) ? "Teacher" : "Student";
-                DataBaseManager.SerializationUserInFile(UsernameTextBox.Text, PasswordTextBox.Text, role);
+                DataBaseManager.RegistrationUserInFile(new User(UsernameTextBox.Text, PasswordTextBox.Text, role));
                 UsefullMethods.ShowMessage("Account created successfully!", "Registration");
                 return;
             }

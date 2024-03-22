@@ -12,14 +12,15 @@ namespace Project.Forms
 {
     public sealed partial class OOPCourseEnvironmentForm : Project.Forms.CourseEnvironmentForm
     {
-        public OOPCourseEnvironmentForm(User User, Course course) : base(User, course)
+        public OOPCourseEnvironmentForm(User user, Course course) : base(user, course)
         {
+
             InitializeComponent();
         }
 
         private void Exam1Button_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Exam2Button_Click(object sender, EventArgs e)

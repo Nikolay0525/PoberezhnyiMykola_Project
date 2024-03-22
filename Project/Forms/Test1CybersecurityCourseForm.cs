@@ -16,24 +16,18 @@ namespace Project.Forms
 {
     public sealed partial class Test1CybersecurityCourseForm : Project.Forms.BaseTestForm
     {
-        private readonly User _user;
-        private readonly Course _course;
-        private readonly int _testId;
         public Test1CybersecurityCourseForm()
         {
             InitializeComponent();
         }
-        public Test1CybersecurityCourseForm(User User, Course course, int testId) : base(User, course, testId)
+        public Test1CybersecurityCourseForm(User user, Course course, int testId) : base(user, course, testId)
         {
-            _user = User;
-            _course = course;
-            _testId = testId;
             InitializeComponent();
 
             string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
             Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
             Console.WriteLine(courses[1].Tests[_testId - 1].Question[0].Id); 
-            if (User.Role != "Teacher")
+            if (user.Role != "Teacher")
             {
                 Question1Table.Visible = false;
                 Question2Table.Visible = false;
