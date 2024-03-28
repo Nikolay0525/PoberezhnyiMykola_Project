@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public sealed class Test : EnvironmentObject, MyInterfaces.IObjectManager<Student>,MyInterfaces.IIndexerGet<Test>
+    public sealed class Test : EnvironmentObject, MyInterfaces.IObjectManager<Student>
     {
-        private static readonly List<Test> _tests = new List<Test>();
-
         private string _name;
         private string _description;
         private List<Student> _students;
@@ -19,18 +17,10 @@ namespace Project.Models
         public string Description { get => _description; set => _description = value; }
         public List<TestQuestion> Questions { get => _questions; set => _questions = value; }
         public List<Student> Students { get => _students; set => _students = value; }
-        public Test this[int index]
-        {
-            get => _tests[index];
-        }
         public Test(int id,string name, string description) : base(id)
         {
             _name = name;
             _description = description;
-            if (!_tests.Exists(obj => obj.Name == Name))
-            {
-                _tests.Add(this);
-            }
         }
 
         public List<Student> AddObject(Student student)

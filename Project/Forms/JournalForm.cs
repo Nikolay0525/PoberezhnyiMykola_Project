@@ -13,9 +13,9 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using Project.Models;
 using System.Xml.Linq;
-
-using static System.Net.Mime.MediaTypeNames;
+using Project.Utilitys;
 using Newtonsoft.Json;
+using static Project.DataBaseManager;
 
 namespace Project.Forms
 {
@@ -28,14 +28,13 @@ namespace Project.Forms
             _user = User;
             _course = course;
             this.Text = "Welcome to " + course.Name + " journal!";
-            string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
-            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
+            List<Course> courses = MakeObjectsList<Course>(CoursesDBPath);
             InitializeComponent();
             foreach (var courseFromDB in courses)
             {
                 if (courseFromDB.Name == course.Name)
                 {
-                    DataBaseManager.UpdateJournal(JournalTable, courseFromDB);
+                    ReadingCourseOperationsWithTable(JournalTable, 1, courseFromDB, UpdateContentOfTableJournal);
                 }
             }
             if (_user.Role == "Student") // access to table
@@ -61,52 +60,37 @@ namespace Project.Forms
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
-            string json = File.ReadAllText(DataBaseManager.CoursesDBPath);
-            Course[] courses = JsonConvert.DeserializeObject<Course[]>(json);
-
-            foreach (var course in courses)
+            if(_user.Role == "Teacher")
             {
-                if (_course.Name == course.Name)
-                {
-                    foreach (DataGridViewRow row in JournalTable.Rows)
-                    {
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            foreach (var test in course.Tests)
-                            {
-                                if (test.Name == cell.OwningColumn.Name)
-                                {
-                                    int rowIndex = cell.RowIndex;
-                                    int columnIndex = cell.ColumnIndex;
-                                    if (rowIndex < test.Students.Length && columnIndex > 0)
-                                    {
-                                        var student = test.Students[rowIndex];
-                                        string cellValue = Convert.ToString(cell.Value);
-
-                                        if (!string.IsNullOrEmpty(cellValue) && int.TryParse(cellValue, out int mark))
-                                        {
-                                            student.Mark = mark;
-                                        }
-                                        else
-                                        {
-                                            student.Mark = 0;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                ApplyChangesToDBJournal(JournalTable, _course);
+                return;
             }
-
-            string updatedCoursesString = JsonConvert.SerializeObject(courses);
-
-            File.WriteAllText(DataBaseManager.CoursesDBPath, updatedCoursesString);
+            UsefullMethods.ShowMessage("You aren't teacher!", "Journal");
         }
 
         private void JournalTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if(row)
+            /*if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewRow selectedRow = JournalTable.Rows[e.RowIndex];
+                string selectedId = selectedRow.Cells["ActualGridColumnCourseId"].Value.ToString();
+                List<Course> courses = MakeObjectsList<Course>(CoursesDBPath);
+                foreach (var course in courses)
+                {
+                    if (course.Id == int.Parse(selectedId))
+                    {
+                        Hide();
+                        Form formInstance = FormCreater.CreateForm(course.Name + "CourseEnvironmentForm", _user, course);
+                        formInstance.FormClosed += (s, arg) =>
+                        {
+                            Show();
+                        };
+                        formInstance.Show();
+                    }
+                }
+
+            }*/
+            
         }
     }
 }

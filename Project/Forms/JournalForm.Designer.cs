@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.JournalTable = new System.Windows.Forms.DataGridView();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApplyButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.JournalTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,20 +42,13 @@
             this.JournalTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.JournalTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.JournalTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UserName});
+            this.StudentName});
             this.JournalTable.Location = new System.Drawing.Point(0, 64);
             this.JournalTable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.JournalTable.Name = "JournalTable";
             this.JournalTable.Size = new System.Drawing.Size(600, 281);
             this.JournalTable.TabIndex = 1;
             this.JournalTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.JournalTable_CellContentClick);
-            // 
-            // UserName
-            // 
-            this.UserName.HeaderText = "Student";
-            this.UserName.Name = "UserName";
-            this.UserName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.UserName.Width = 180;
             // 
             // ApplyButton
             // 
@@ -81,6 +74,12 @@
             this.CloseButton.UseVisualStyleBackColor = false;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // StudentName
+            // 
+            this.StudentName.HeaderText = "Student";
+            this.StudentName.Name = "StudentName";
+            this.StudentName.ReadOnly = true;
+            // 
             // JournalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -100,8 +99,8 @@
         #endregion
 
         private System.Windows.Forms.DataGridView JournalTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
         private System.Windows.Forms.Button ApplyButton;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
     }
 }

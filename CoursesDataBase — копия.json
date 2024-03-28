@@ -1,0 +1,407 @@
+[
+  {
+    "Name": "OOP",
+    "FacultyName": "Information Technologies",
+    "Users": [
+      {
+        "Id": "b7d8ccfd-54ba-443c-a7f6-78ecdb80d42c",
+        "Username": "asd",
+        "Password": "123",
+        "Role": "Teacher"
+      },
+      {
+        "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+        "Username": "qwe",
+        "Password": "123",
+        "Role": "Student"
+      },
+      {
+        "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+        "Username": "zxc",
+        "Password": "123",
+        "Role": "Student"
+      }
+    ],
+    "Tests": [
+      {
+        "Name": "Test1",
+        "Description": "Simple questions from principles of OOP",
+        "Question": [
+          {
+            "Answer": [
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  },
+                  {
+                    "Mark": 0,
+                    "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+                    "Username": "zxc",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 1
+              },
+              {
+                "Students": [],
+                "Id": 2
+              },
+              {
+                "Students": [],
+                "Id": 3
+              }
+            ],
+            "Id": 1
+          },
+          {
+            "Answer": [
+              {
+                "Students": [],
+                "Id": 1
+              },
+              {
+                "Students": [],
+                "Id": 2
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  },
+                  {
+                    "Mark": 0,
+                    "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+                    "Username": "zxc",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 3
+              }
+            ],
+            "Id": 2
+          },
+          {
+            "Answer": [
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 1
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+                    "Username": "zxc",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 2
+              },
+              {
+                "Students": [],
+                "Id": 3
+              }
+            ],
+            "Id": 3
+          }
+        ],
+        "Students": [
+          {
+            "Mark": 3,
+            "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+            "Username": "qwe",
+            "Password": "123",
+            "Role": "Student"
+          },
+          {
+            "Mark": 5,
+            "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+            "Username": "zxc",
+            "Password": "123",
+            "Role": "Student"
+          }
+        ],
+        "Id": 1
+      },
+      {
+        "Name": "Test2",
+        "Description": "Simple questions of cybersecurity in network2",
+        "Question": [
+          {
+            "Answer": [
+              {
+                "Students": [],
+                "Id": 1
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 2
+              },
+              {
+                "Students": [],
+                "Id": 3
+              }
+            ],
+            "Id": 1
+          },
+          {
+            "Answer": [
+              {
+                "Students": [],
+                "Id": 1
+              },
+              {
+                "Students": [],
+                "Id": 2
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 3
+              }
+            ],
+            "Id": 2
+          },
+          {
+            "Answer": [
+              {
+                "Students": [],
+                "Id": 1
+              },
+              {
+                "Students": [],
+                "Id": 2
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 3
+              }
+            ],
+            "Id": 3
+          }
+        ],
+        "Students": [
+          {
+            "Mark": 2,
+            "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+            "Username": "qwe",
+            "Password": "123",
+            "Role": "Student"
+          }
+        ],
+        "Id": 2
+      }
+    ],
+    "Id": 1
+  },
+  {
+    "Name": "Cybersecurity",
+    "FacultyName": "Information Technologies",
+    "Users": [
+      {
+        "Id": "b7d8ccfd-54ba-443c-a7f6-78ecdb80d42c",
+        "Username": "asd",
+        "Password": "123",
+        "Role": "Teacher"
+      },
+      {
+        "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+        "Username": "qwe",
+        "Password": "123",
+        "Role": "Student"
+      },
+      {
+        "Id": "423ae9b4-a2d6-4e29-869b-cd58437da754",
+        "Username": "rty",
+        "Password": "123",
+        "Role": "Student"
+      },
+      {
+        "Id": "28dd92e1-814c-4ed0-803e-ebafd24355b9",
+        "Username": "hjk",
+        "Password": "123",
+        "Role": "Student"
+      },
+      {
+        "Id": "6911be87-ff2e-4f1e-ac4c-5af571fb1668",
+        "Username": "gamn",
+        "Password": "123",
+        "Role": "Student"
+      },
+      {
+        "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+        "Username": "zxc",
+        "Password": "123",
+        "Role": "Student"
+      }
+    ],
+    "Tests": [
+      {
+        "Name": "Test1",
+        "Description": "Simple questions of cybersecurity in network",
+        "Question": [
+          {
+            "Answer": [
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 1
+              },
+              {
+                "Students": [],
+                "Id": 2
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+                    "Username": "zxc",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 3
+              }
+            ],
+            "Id": 1
+          },
+          {
+            "Answer": [
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+                    "Username": "zxc",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 1
+              },
+              {
+                "Students": [],
+                "Id": 2
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 3
+              }
+            ],
+            "Id": 2
+          },
+          {
+            "Answer": [
+              {
+                "Students": [],
+                "Id": 1
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+                    "Username": "qwe",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 2
+              },
+              {
+                "Students": [
+                  {
+                    "Mark": 0,
+                    "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+                    "Username": "zxc",
+                    "Password": "123",
+                    "Role": "Student"
+                  }
+                ],
+                "Id": 3
+              }
+            ],
+            "Id": 3
+          }
+        ],
+        "Students": [
+          {
+            "Mark": 4,
+            "Id": "35873d02-f6ec-4f91-9198-15a1530f8c6a",
+            "Username": "qwe",
+            "Password": "123",
+            "Role": "Student"
+          },
+          {
+            "Mark": 3,
+            "Id": "ebada638-041a-4075-816f-c7ff8333e5ab",
+            "Username": "zxc",
+            "Password": "123",
+            "Role": "Student"
+          }
+        ],
+        "Id": 1
+      }
+    ],
+    "Id": 2
+  }
+]

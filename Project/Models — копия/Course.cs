@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public sealed class Course : EnvironmentObject, MyInterfaces.IObjectManager<User>, MyInterfaces.IIndexerGet<Course>
+    public sealed class Course : EnvironmentObject, MyInterfaces.IObjectManager<User>
     {
-        private static readonly List<Course> _courses = new List<Course>();
         private string _name;
         private string _facultyName;
         private List<Test> _tests;
@@ -20,31 +19,16 @@ namespace Project.Models
         public string FacultyName { get => _facultyName; set => _facultyName = value; }
         public List<Test> Tests { get => _tests; set => _tests = value; }
         public List<User> Users { get => _users; set => _users = value; }
-        public Course this[int index]
-        {
-            get => _courses[index];
-        }
-        public Course()
+        public Course(int id) : base(id) 
         {
 
         }
-        /*public Course(int id) : base(id)
+        public Course(int id, string Name, string FacultyName,List<Test> tests, List<User> users) : base(id) 
         {
-            _name = "";
-            _facultyName = "";
-            _tests = new List<Test>();
-            _users = new List<User>();
-        }*/
-        public Course(int id, string name, string facultyName) : base(id)
-        {
-            _name = name;
-            _name = facultyName;
-            _tests = new List<Test>();
-            _users = new List<User>();
-            if (!_courses.Exists(obj => obj.Name == Name))
-            {
-                _courses.Add(this);
-            }
+            _name = Name;
+            _facultyName = FacultyName;
+            _tests = tests;
+            _users = users;
         }
         public List<User> AddObject(User user)
         {

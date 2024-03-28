@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Project.Models;
+using static Project.DataBaseManager;
 
 namespace Project.Forms
 {
@@ -28,11 +29,12 @@ namespace Project.Forms
             _course = course;
             this.Text = "Welcome to " + course.Name + " course!";
             InitializeComponent();
-            DataBaseManager.UpdateTeacherTable(TeacherTable, course);
+            ReadingCourseOperationsWithTable(TeacherTable, 1, _course, UpdateTeacherTable);
         }
 
         private void JournalButton_Click(object sender, EventArgs e)
         {
+            ReadingCourseOperationsWithTable(TeacherTable, 1, _course, UpdateTeacherTable);
             Hide();
             JournalForm journalForm = new JournalForm(_user, _course);
             journalForm.FormClosed += (s, arg) =>

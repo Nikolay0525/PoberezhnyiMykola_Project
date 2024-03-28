@@ -11,9 +11,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using Newtonsoft.Json;
 using Project.Forms;
 using Project.Models;
 using Project.Utilitys;
+using static Project.DataBaseManager;
 
 namespace Project.Forms
 {
@@ -23,7 +25,7 @@ namespace Project.Forms
         {
             InitializeComponent();
             MaterialFormSkinChanger.SetParametersOfForm(this);
-            DataBaseManager.CreateBaseDB();
+            CreateBaseDB();
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)
@@ -39,7 +41,7 @@ namespace Project.Forms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            User user = DataBaseManager.DeserializationOfUsersWithPassword(DataBaseManager.UsersDBPath,UsernameTextBox.Text, PasswordTextBox.Text);
+            User user = ReadingOperationWithObject(UsersDBPath, new User(UsernameTextBox.Text, null, null, PasswordTextBox.Text, null),DeserializationOfUsersWithPassword);
             if (user != null)
             {
                 Hide();

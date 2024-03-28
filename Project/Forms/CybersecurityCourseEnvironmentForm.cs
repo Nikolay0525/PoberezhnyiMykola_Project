@@ -12,13 +12,9 @@ namespace Project.Forms
 {
     public sealed partial class CybersecurityCourseEnvironmentForm : Project.Forms.CourseEnvironmentForm
     {
-        private readonly User _user;
-        private readonly Course _course;
 
         public CybersecurityCourseEnvironmentForm(User User, Course course) : base(User, course)
         {
-            _user = User;
-            _course = course;
             InitializeComponent();
         }
 

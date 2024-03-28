@@ -30,6 +30,7 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.CloseButton = new System.Windows.Forms.Button();
             this.PersonRole = new System.Windows.Forms.Label();
             this.PersonName = new System.Windows.Forms.Label();
@@ -49,13 +50,12 @@
             this.GridColumnCourseId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GridColumnCourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GridColumnCourseFaculty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ActualCoursesTable)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvailableCoursesTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -89,6 +89,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profile";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox1.Image = global::Project.Properties.Resources.profile;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(147, 148);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // CloseButton
             // 
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -104,7 +115,7 @@
             // 
             this.PersonRole.BackColor = System.Drawing.SystemColors.Control;
             this.PersonRole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PersonRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PersonRole.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PersonRole.Location = new System.Drawing.Point(13, 267);
             this.PersonRole.Name = "PersonRole";
             this.PersonRole.Size = new System.Drawing.Size(151, 25);
@@ -114,7 +125,7 @@
             // 
             this.PersonName.BackColor = System.Drawing.SystemColors.Control;
             this.PersonName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PersonName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PersonName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PersonName.Location = new System.Drawing.Point(14, 204);
             this.PersonName.Name = "PersonName";
             this.PersonName.Size = new System.Drawing.Size(150, 25);
@@ -122,7 +133,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(324, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 25);
@@ -132,7 +143,7 @@
             // 
             // NameLabel
             // 
-            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NameLabel.Location = new System.Drawing.Point(40, 179);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(100, 25);
@@ -142,7 +153,7 @@
             // 
             // RoleLabel
             // 
-            this.RoleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RoleLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RoleLabel.Location = new System.Drawing.Point(40, 242);
             this.RoleLabel.Name = "RoleLabel";
             this.RoleLabel.Size = new System.Drawing.Size(100, 25);
@@ -277,17 +288,6 @@
             this.GridColumnCourseFaculty.ReadOnly = true;
             this.GridColumnCourseFaculty.Width = 200;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox1.Image = global::Project.Properties.Resources.profile;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 28);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(147, 148);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // UniversityEnvironmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,10 +298,10 @@
             this.Text = "Welcome back to environment!";
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ActualCoursesTable)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AvailableCoursesTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

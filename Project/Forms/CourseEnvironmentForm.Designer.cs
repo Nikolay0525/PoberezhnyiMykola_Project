@@ -49,6 +49,8 @@
             // 
             // TeacherTable
             // 
+            this.TeacherTable.AllowUserToAddRows = false;
+            this.TeacherTable.AllowUserToDeleteRows = false;
             this.TeacherTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.TeacherTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TeacherTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

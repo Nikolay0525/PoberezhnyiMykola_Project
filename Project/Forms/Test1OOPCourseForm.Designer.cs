@@ -3,7 +3,7 @@ using System;
 
 namespace Project.Forms
 {
-    partial class Test1CybersecurityCourseForm
+    partial class Test1OOPCourseForm
     {
         /// <summary>
         /// Required designer variable.
@@ -48,11 +48,11 @@ namespace Project.Forms
             this.Question3Check2 = new System.Windows.Forms.CheckBox();
             this.Question3Check3 = new System.Windows.Forms.CheckBox();
             this.Question3Table = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Question2Table = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Question1Table = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Question3Table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Question2Table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Question1Table)).BeginInit();
@@ -73,11 +73,11 @@ namespace Project.Forms
             // 
             this.Question1Check1.AutoSize = true;
             this.Question1Check1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question1Check1.Location = new System.Drawing.Point(165, 182);
+            this.Question1Check1.Location = new System.Drawing.Point(221, 182);
             this.Question1Check1.Name = "Question1Check1";
-            this.Question1Check1.Size = new System.Drawing.Size(160, 24);
+            this.Question1Check1.Size = new System.Drawing.Size(48, 24);
             this.Question1Check1.TabIndex = 2;
-            this.Question1Check1.Text = "Windows Defender";
+            this.Question1Check1.Text = "C#";
             this.Question1Check1.UseVisualStyleBackColor = false;
             this.Question1Check1.CheckedChanged += new System.EventHandler(this.Question1Check_CheckedChanged);
             // 
@@ -89,7 +89,7 @@ namespace Project.Forms
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(327, 29);
             this.label2.TabIndex = 1;
-            this.label2.Text = "What is the best free antivirus?";
+            this.label2.Text = "Which language allows OOP?";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -100,7 +100,6 @@ namespace Project.Forms
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(316, 29);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Is using of pirate soft safe?";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -130,11 +129,11 @@ namespace Project.Forms
             // 
             this.Question1Check2.AutoSize = true;
             this.Question1Check2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question1Check2.Location = new System.Drawing.Point(205, 212);
+            this.Question1Check2.Location = new System.Drawing.Point(221, 212);
             this.Question1Check2.Name = "Question1Check2";
-            this.Question1Check2.Size = new System.Drawing.Size(68, 24);
+            this.Question1Check2.Size = new System.Drawing.Size(38, 24);
             this.Question1Check2.TabIndex = 2;
-            this.Question1Check2.Text = "Avast";
+            this.Question1Check2.Text = "C";
             this.Question1Check2.UseVisualStyleBackColor = false;
             this.Question1Check2.CheckedChanged += new System.EventHandler(this.Question1Check_CheckedChanged);
             // 
@@ -142,11 +141,11 @@ namespace Project.Forms
             // 
             this.Question1Check3.AutoSize = true;
             this.Question1Check3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question1Check3.Location = new System.Drawing.Point(210, 242);
+            this.Question1Check3.Location = new System.Drawing.Point(205, 242);
             this.Question1Check3.Name = "Question1Check3";
-            this.Question1Check3.Size = new System.Drawing.Size(59, 24);
+            this.Question1Check3.Size = new System.Drawing.Size(76, 24);
             this.Question1Check3.TabIndex = 2;
-            this.Question1Check3.Text = "AVG";
+            this.Question1Check3.Text = "Pascal";
             this.Question1Check3.UseVisualStyleBackColor = false;
             this.Question1Check3.CheckedChanged += new System.EventHandler(this.Question1Check_CheckedChanged);
             // 
@@ -204,7 +203,7 @@ namespace Project.Forms
             this.Question3Check2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Question3Check2.Location = new System.Drawing.Point(101, 450);
             this.Question3Check2.Name = "Question3Check2";
-            this.Question3Check2.Size = new System.Drawing.Size(320, 24);
+            this.Question3Check2.Size = new System.Drawing.Size(328, 24);
             this.Question3Check2.TabIndex = 2;
             this.Question3Check2.Text = "We should check his Answers before using";
             this.Question3Check2.UseVisualStyleBackColor = false;
@@ -216,7 +215,7 @@ namespace Project.Forms
             this.Question3Check3.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Question3Check3.Location = new System.Drawing.Point(137, 480);
             this.Question3Check3.Name = "Question3Check3";
-            this.Question3Check3.Size = new System.Drawing.Size(226, 24);
+            this.Question3Check3.Size = new System.Drawing.Size(234, 24);
             this.Question3Check3.TabIndex = 2;
             this.Question3Check3.Text = "No, he\'s giving trash Answers";
             this.Question3Check3.UseVisualStyleBackColor = false;
@@ -235,6 +234,13 @@ namespace Project.Forms
             this.Question3Table.Size = new System.Drawing.Size(273, 117);
             this.Question3Table.TabIndex = 4;
             // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 130;
+            // 
             // Question2Table
             // 
             this.Question2Table.AllowUserToAddRows = false;
@@ -247,6 +253,13 @@ namespace Project.Forms
             this.Question2Table.ReadOnly = true;
             this.Question2Table.Size = new System.Drawing.Size(273, 117);
             this.Question2Table.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 130;
             // 
             // Question1Table
             // 
@@ -268,21 +281,7 @@ namespace Project.Forms
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Width = 130;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Student";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 130;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Student";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 130;
-            // 
-            // Test1CybersecurityCourseForm
+            // Test1OOPCourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.ClientSize = new System.Drawing.Size(893, 700);
@@ -303,7 +302,7 @@ namespace Project.Forms
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Test1CybersecurityCourseForm";
+            this.Name = "Test1OOPCourseForm";
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);

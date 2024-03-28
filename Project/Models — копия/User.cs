@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public class User : MyInterfaces.IManualWritingToFile, MyInterfaces.IPersonFeatures, MyInterfaces.IObjectManager<Course>, MyInterfaces.IIndexerGet<User>
+    public class User : MyInterfaces.IManualWritingToFile, MyInterfaces.IPersonFeatures, MyInterfaces.IObjectManager<Course>, MyInterfaces.IIndexerGet<string>
     {
-        private static readonly List<User> _users = new List<User>();
+        private readonly List<string> _userData;
         private Guid _id;
         private string _username;
         private string _firstName;
@@ -25,21 +25,22 @@ namespace Project.Models
         public string Password { get => _password; set => _password = value; }
         public string Role { get => _role; set => _role = value; }
         public List<Course> Courses { get => _courses; set => _courses = value; }
-        public User this[int index]
+        public string this[int index]
         {
-            get => _users[index];
+            get => _userData[index];
         }
         public User() { }
-        public User(string username = "", string firstName = "", string lastName = "")
+        public User(string username, string firstName, string lastName)
         {
             _id = Guid.NewGuid();
             _username = username;
             _firstName = firstName;
             _lastName = lastName;
             _courses = new List<Course>();
+            _userData = new List<string>() {_id.ToString(),_username,_firstName,_lastName};
         }
 
-        public User(string username = "",string firstName = "",string lastName = "", string password = "", string role = "")
+        public User(string username,string firstName,string lastName, string password, string role)
         {
             _id = Guid.NewGuid();
             _username = username;
@@ -48,10 +49,7 @@ namespace Project.Models
             _password = password;
             _role = role;
             _courses = new List<Course>();
-            if (!DataBaseManager.CheckIfUserExist(_users, this))
-            {
-                _users.Add(this); 
-            }
+            _userData = new List<string>() {_id.ToString(),_username,_firstName,_lastName,_password,_role};
         }
         public List<Course> AddObject(Course course)
         {

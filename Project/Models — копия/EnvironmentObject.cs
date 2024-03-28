@@ -15,9 +15,6 @@ namespace Project.Models
     {
         private int _id;
         public int Id { get => _id; set => _id = value; }
-        public EnvironmentObject()
-        {
-        }
         public EnvironmentObject(int id)
         {
             _id = id;

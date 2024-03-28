@@ -7,9 +7,8 @@ using Project.Interfaces;
 
 namespace Project.Models
 {
-    public sealed class Student : User, MyInterfaces.IStudentFeatures, MyInterfaces.IIndexerGet<Student>
+    public sealed class Student : User, MyInterfaces.IStudentFeatures
     {
-        private static readonly List<Student> _students = new List<Student>();
         private int _mark;
         
         public int Mark
@@ -26,17 +25,10 @@ namespace Project.Models
                 _mark = value;
             }
         }
-        public new Student this[int index]
-        {
-            get => _students[index];
-        }
+
         public Student(string username, string firstName, string lastName) : base(username, firstName, lastName) 
         {
             Mark = 0;
-            if (!_students.Exists(student => student.Username == Username))
-            {
-                _students.Add(this);
-            }
         }
 
         public override string GetJson()

@@ -15,6 +15,7 @@ using System.Xml.Linq;
 using System.Data;
 using Newtonsoft.Json;
 using Project.Utilitys;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Project
 {
@@ -23,98 +24,175 @@ namespace Project
         public const string UsersDBPath = "../../UsersDataBase.json";
         public const string CoursesDBPath = "../../CoursesDataBase.json";
 
-        public static List<User> MakeUsersList()
-        {
-            List<User> users = null;
+        public delegate void VoidOperationWithObject<T>(List<T> objects, T obj);
+        public delegate T TypeOperationWithObject<T>(List<T> objects, T obj);
+        public delegate bool BoolOperationWithObject<T>(List<T> objects, T obj);
 
-            if (File.Exists(UsersDBPath) && new FileInfo(UsersDBPath).Length > 0)
+        public static List<T> MakeObjectsList<T>(string filePath)
+        {
+            List<T> objects = null;
+
+            if (File.Exists(filePath) && new FileInfo(filePath).Length > 0)
             {
-                string json = File.ReadAllText(UsersDBPath);
-                users = JsonConvert.DeserializeObject<List<User>>(json);
+                string json = File.ReadAllText(filePath);
+                objects = JsonConvert.DeserializeObject<List<T>>(json);
             }
-
-            return users ?? new List<User>();
+            return objects ?? new List<T>();
         }
-
-        public static List<Course> MakeCoursesList()
+        public static void RewritingOperationWithObject<T>(string filePath, T obj, params VoidOperationWithObject<T>[] operations)
         {
-            List<Course> courses = null;
-
-            if (File.Exists(CoursesDBPath) && new FileInfo(CoursesDBPath).Length > 0)
+            List<T> objects = MakeObjectsList<T>(filePath);
+            if (operations.Length == 0) { return; }
+            foreach (var operation in operations)
             {
-                string json = File.ReadAllText(CoursesDBPath);
-                courses = JsonConvert.DeserializeObject<List<Course>>(json);
-
+                operation(objects, obj);
             }
-            return courses ?? new List<Course>();
+            string updatedObjects = JsonConvert.SerializeObject(objects, Formatting.Indented);
+
+            File.WriteAllText(filePath, updatedObjects);
         }
-
-        public static void RegistrationUserInFile(User user)
+        public static T ReadingOperationWithObject<T>(string filePath, T obj, params TypeOperationWithObject<T>[] operations)
         {
-            List<User> users = MakeUsersList();
-
-            users.Add(user);
-
-            string updatedUsersString = JsonConvert.SerializeObject(users);
-
-            File.WriteAllText(UsersDBPath, updatedUsersString);
-        }
-
-        
-        public static bool UserExist(string userName)
-        {
-            if (File.ReadAllText(UsersDBPath) != null) 
+            List<T> objects = MakeObjectsList<T>(filePath);
+            if (operations.Length == 0) { return default; }
+            foreach (var operation in operations)
             {
-                List<User> users = MakeUsersList();
-                foreach (var User in users)
+                return operation(objects, obj);
+            }
+            return default;
+        }
+        public static bool ReadingBoolOperationWithObject<T>(string filePath, T obj, params BoolOperationWithObject<T>[] operations)
+        {
+            List<T> objects = MakeObjectsList<T>(filePath);
+            var returnValue = false;
+            if (operations.Length == 0) { return returnValue; }
+            foreach (var operation in operations)
+            {
+                returnValue = operation(objects, obj);
+                if (returnValue == true)
                 {
-                    if (User.Name == userName)
-                    {
-                        return false;
-                    }
+                    return returnValue;
                 }
             }
-            return true;
+            return returnValue;
         }
-        public static User DeserializationOfUsersWithPassword(string dbName, string userName, string password)
+
+        public static bool CheckIfUserExist(List<User> users, User user)
         {
-            if (File.ReadAllText(UsersDBPath) != null)
+            if (users.Exists(currentUser => currentUser.Username == user.Username))
             {
-                List<User> users = MakeUsersList();
-                foreach (var User in users)
+                return true;
+            }
+            return false;
+        }
+        public static void RegistrationUserInFile(List<User> users, User user)
+        {
+            users.Add(user);
+        }
+        public static User DeserializationOfUsersWithPassword(List<User> users, User user)
+        {
+            foreach (var currentUser in users)
+            {
+                if (currentUser.Username == user.Username && currentUser.Password == user.Password)
                 {
-                    if (User.Name == userName && User.Password == password)
-                    {
-                        return User;
-                    }
+                    return currentUser;
                 }
             }
             return null;
         }
 
-        public static void UpdateTableWithAvailableCourses(DataGridView table)
+        public delegate void TableOperation<T>(DataGridView table,List<T> obj, User user);
+        public delegate void TableCourseOperation<Course>(DataGridView table, Course course);
+
+        public static void ReadingOperationsWithTable<T>(string filePath, DataGridView table, int clear, User user, params TableOperation<T>[] operations)
         {
-            table.Rows.Clear();
-
-            List<Course> courses = MakeCoursesList();
-
-            foreach (var course in courses)
+            switch (clear)
             {
-                table.Rows.Add(false, course.Id, course.Name, course.FacultyName);
+                case 0:
+                    break;
+                case 1:
+                    table.Rows.Clear();
+                    break;
+                case 2:
+                    table.Rows.Clear();
+                    table.Columns.Clear();
+                    break;
+                default:
+                    break;
+            }
+
+            List<T> objects = MakeObjectsList<T>(filePath);
+
+            foreach (var operation in operations)
+            {
+                operation(table, objects, user);
+            }
+        }
+        public static void ReadAndWriteOperationsWithTable<T>(string filePath, DataGridView table, int clear, User user, params TableOperation<T>[] operations)
+        {
+            switch (clear)
+            {
+                case 0:
+                    break;
+                case 1:
+                    table.Rows.Clear();
+                    break;
+                case 2:
+                    table.Rows.Clear();
+                    table.Columns.Clear();
+                    break;
+                default:
+                    break;
+            }
+
+            List<T> objects = MakeObjectsList<T>(filePath);
+
+            foreach (var operation in operations)
+            {
+                operation(table, objects, user);
+            }
+
+            string updatedObjects = JsonConvert.SerializeObject(objects, Formatting.Indented);
+
+            File.WriteAllText(filePath, updatedObjects);
+        }
+        public static void ReadingCourseOperationsWithTable(DataGridView table, int clear, Course course, params TableCourseOperation<Course>[] operations)
+        {
+            switch (clear)
+            {
+                case 0:
+                    break;
+                case 1:
+                    table.Rows.Clear();
+                    break;
+                case 2:
+                    table.Rows.Clear();
+                    table.Columns.Clear();
+                    break;
+                default:
+                    break;
+            }
+
+            foreach (var operation in operations)
+            {
+                operation(table, course);
             }
         }
 
-        public static void UpdateTableWithActualCourses(DataGridView table, string userName)
+        public static void UpdateTableWithAvailableCourses(DataGridView table, List<Course> courses, User user)
         {
-            table.Rows.Clear();
-
-            List<Course> courses = MakeCoursesList();
-
             foreach (var course in courses)
             {
-                for (int i = 0; i < course.Users.Length; i++)
+                table.Rows.Add(false, course.Id, course.Name, course.FacultyName, course.Users);
+            }
+        }
+        public static void UpdateTableWithActualCourses(DataGridView table, List<Course> courses, User user)
+        {
+            foreach (var course in courses)
+            {
+                for (int i = 0; i < course.Users.Count; i++)
                 {
-                    if (userName == course.Users[i].Name)
+                    if (user.Username == course.Users[i].Username)
                     {
                         table.Rows.Add(course.Id, course.Name, course.FacultyName);
                     }
@@ -122,63 +200,134 @@ namespace Project
             }
         }
 
-        public static void SignUserOnCourse(DataGridView CoursesTable, User User)
+        public static void SignUserOnCourse(DataGridView CoursesTable, List<Course> courses, User user)
         {
-            List<Course> courses = MakeCoursesList();
             for (int i = 0; i < courses.Count; i++)
             {
                 if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
                 {
                     var course = courses[i];
-                    List<User> updatedUsers = new List<User>(course.Users ?? new User[0]);
                     foreach (var currentUser in course.Users)
                     {
-                        if (currentUser.Name == User.Name)
+                        if (currentUser.Username == user.Username)
                         {
                             UsefullMethods.ShowMessage("You already signed on some of checked courses...", "Registration");
                             return;
                         }
                     }
-                    updatedUsers.Add(User);
-
-                    course.Users = updatedUsers.ToArray();
+                    course.AddObject(user);
                 }
             }
-
-            Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
-
-            string updatedUsersString = JsonConvert.SerializeObject(courses);
-
-            File.WriteAllText(CoursesDBPath, updatedUsersString);
         }
-        public static void UnsignUserFromCourse(DataGridView CoursesTable, User User)
+        public static void UnsignUserFromCourse(DataGridView CoursesTable,List<Course> courses, User user)
         {
-            List<Course> courses = MakeCoursesList();
             for (int i = 0; i < courses.Count; i++)
             {
                 if ((bool)CoursesTable.Rows[i].Cells[0].Value == true)
                 {
                     var course = courses[i];
-                    List<User> updatedUsers = new List<User>(course.Users ?? new User[0]);
-                    for (int j = updatedUsers.Count - 1; j >= 0; j--)
+                    for (int j = course.Users.Count() - 1; j >= 0; j--)
                     {
-                        var currentUser = updatedUsers[j];
-                        if (currentUser.Name == User.Name)
+                        var currentUser = course.Users[j];
+                        if (currentUser.Username == user.Username)
                         {
-                            updatedUsers.RemoveAt(j);
+                            course.RemoveObject(currentUser);
+                            break;
                         }
                     }
-                    course.Users = updatedUsers.ToArray();
+                }
+            }
+        }
+
+
+        public static void UpdateTeacherTable(DataGridView table, Course course)
+        {
+            List<User> users = course.Users;
+            foreach (var user in users)
+            {
+                if (user.Role == "Teacher" && table != null)
+                {
+                    DataGridViewRow newRow = new DataGridViewRow();
+                    DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
+                    nameCell.Value = user.Username;
+                    newRow.Cells.Add(nameCell);
+                    table.Rows.Add(newRow);
+                }
+            }
+        }
+        public static void UpdateContentOfTableJournal(DataGridView table, Course course)
+        {
+            foreach (var test in course.Tests)
+            {
+                if (table.Columns["Test " + test.Id] == null)
+                {
+                    DataGridViewTextBoxColumn testColumn = new DataGridViewTextBoxColumn();
+                    testColumn.HeaderText = "Test " + test.Id;
+                    testColumn.Name = "Test" + test.Id;
+                    testColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    table.Columns.Add(testColumn);
                 }
             }
 
-            Console.WriteLine(!string.IsNullOrWhiteSpace(File.ReadAllText(UsersDBPath)));
-
-            string updatedUsersString = JsonConvert.SerializeObject(courses);
-
-            File.WriteAllText(CoursesDBPath, updatedUsersString);
+            foreach (var test in course.Tests)
+            {
+                foreach (var student in test.Students)
+                {
+                    bool match = false;
+                    if(table.Rows.Count != 0)
+                    {
+                        foreach (DataGridViewRow row in table.Rows)
+                        {
+                            if (row.Cells[0].Value.ToString() == student.Username)
+                            {
+                                row.Cells[test.Id].Value = student.Mark;
+                                match = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!match)
+                    {
+                        DataGridViewRow newRow = new DataGridViewRow();
+                        newRow.CreateCells(table);
+                        newRow.Cells[0].Value = student.Username;
+                        newRow.Cells[test.Id].Value = student.Mark;
+                        table.Rows.Add(newRow);
+                    }
+                }
+            }
         }
+        public static void ApplyChangesToDBJournal(DataGridView table, Course course)
+        {
+            List<Course> courses = MakeObjectsList<Course>(CoursesDBPath);
+            
+            foreach(DataGridViewRow row in table.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    foreach (var test in courses[course.Id - 1].Tests)
+                    {
+                        if (test.Name == cell.OwningColumn.Name)
+                        {
+                            foreach (var student in test.Students)
+                            {
+                                if (row.Cells[0].Value.ToString() == student.Username)
+                                {
+                                    if(int.TryParse(cell.Value.ToString(), out int mark))
+                                    {
+                                        student.Mark = mark;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
+            string updatedCourses = JsonConvert.SerializeObject(courses, Formatting.Indented);
+
+            File.WriteAllText(CoursesDBPath, updatedCourses);
+        }
         public static void CreateBaseDB()
         {
             if (!File.Exists(UsersDBPath))
@@ -193,71 +342,6 @@ namespace Project
                 {
                 }
             }
-        }
-
-        public static void UpdateTeacherTable(DataGridView table, Course course)
-        {
-            table.Rows.Clear();
-            table.Columns.Clear();
-
-            User[] users = course.Users;
-            foreach (var User in users)
-            {
-                if (User.Role == "Teacher")
-                {
-                    DataGridViewRow newRow = new DataGridViewRow();
-                    DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
-                    nameCell.Value = User.Name;
-                    newRow.Cells.Add(nameCell);
-                    table.Rows.Add(newRow);
-                }
-            }
-        }
-        public static void UpdateJournal(DataGridView table, Course course)
-        {
-            table.Rows.Clear();
-            table.Columns.Clear();
-
-            table.Columns.Add("StudentName", "Student");
-            if (course.Tests != null && course.Tests.Length > 0)
-            {
-                foreach (var test in course.Tests)
-                {
-                    table.Columns.Add("Test" + test.Id, "Test " + test.Id);
-                }
-            }
-
-            foreach (var User in course.Users)
-            {
-                if (User.Role == "Student")
-                {
-                    DataGridViewRow newRow = new DataGridViewRow();
-
-                    DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
-                    nameCell.Value = User.Name;
-                    newRow.Cells.Add(nameCell);
-
-                    if (course.Tests != null && course.Tests.Length > 0)
-                    {
-                        foreach (var test in course.Tests)
-                        {
-                            DataGridViewTextBoxCell testCell = new DataGridViewTextBoxCell();
-                            Student student = test.Students.FirstOrDefault(s => s.Name == User.Name);
-                            if (student != null)
-                            {
-                                testCell.Value = student.Mark;
-                            }
-                            else
-                            {
-                                testCell.Value = "";
-                            }
-                            newRow.Cells.Add(testCell);
-                        }
-                    }
-                    table.Rows.Add(newRow);
-                }
-            }
-
         }
     }
 }

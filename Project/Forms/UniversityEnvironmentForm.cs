@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using Project.Utilitys;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using static Project.DataBaseManager;
 
 namespace Project.Forms
 
@@ -20,22 +21,22 @@ namespace Project.Forms
         {
             InitializeComponent();
             _user = user;
-            PersonName.Text = user.Name;
+            PersonName.Text = user.FirstName + " " + user.LastName ;
             PersonRole.Text = user.Role;
-            DataBaseManager.UpdateTableWithAvailableCourses(AvailableCoursesTable);
-            DataBaseManager.UpdateTableWithActualCourses(ActualCoursesTable, user.Name);
+            ReadingOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 1, _user, UpdateTableWithAvailableCourses);
+            ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
         }
 
         private void SignButton_Click(object sender, EventArgs e)
         {
-            DataBaseManager.SignUserOnCourse(AvailableCoursesTable, _user);
-            DataBaseManager.UpdateTableWithActualCourses(ActualCoursesTable, _user.Name);
+            ReadAndWriteOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 0,_user, SignUserOnCourse);
+            ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
         }
 
         private void UnsignButton_Click(object sender, EventArgs e)
         {
-            DataBaseManager.UnsignUserFromCourse(AvailableCoursesTable, _user);
-            DataBaseManager.UpdateTableWithActualCourses(ActualCoursesTable, _user.Name);
+            ReadAndWriteOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 0, _user, UnsignUserFromCourse);
+            ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
         }
 
         private void ActualCoursesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -44,7 +45,7 @@ namespace Project.Forms
             {
                 DataGridViewRow selectedRow = ActualCoursesTable.Rows[e.RowIndex];
                 string selectedId = selectedRow.Cells["ActualGridColumnCourseId"].Value.ToString();
-                List<Course> courses = DataBaseManager.MakeCoursesList();
+                List<Course> courses = MakeObjectsList<Course>(CoursesDBPath);
                 foreach (var course in courses)
                 {
                     if (course.Id == int.Parse(selectedId))

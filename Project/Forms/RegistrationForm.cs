@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Project.Models;
+using static Project.DataBaseManager;
 
 namespace Project.Forms
 {
@@ -23,11 +24,11 @@ namespace Project.Forms
         
         private void RegistrateAccountButton_Click(object sender, EventArgs e)
         {
-            
-            if (DataBaseManager.UserExist(UsernameTextBox.Text))
+            var role = (TeacherCheck.Checked == true) ? "Teacher" : "Student";
+            var user = new User(UsernameTextBox.Text, FirstNameTextBox.Text, LastNameTextBox.Text, PasswordTextBox.Text, role);
+            if (!ReadingBoolOperationWithObject(UsersDBPath, user, CheckIfUserExist))
             {
-                var role = (TeacherCheck.Checked == true) ? "Teacher" : "Student";
-                DataBaseManager.RegistrationUserInFile(new User(UsernameTextBox.Text, PasswordTextBox.Text, role));
+                RewritingOperationWithObject(UsersDBPath,user, RegistrationUserInFile);
                 UsefullMethods.ShowMessage("Account created successfully!", "Registration");
                 return;
             }

@@ -14,13 +14,13 @@ using Newtonsoft.Json;
 
 namespace Project.Forms
 {
-    public sealed partial class Test1CybersecurityCourseForm : Project.Forms.BaseTestForm
+    public sealed partial class Test2OOPCourseForm : Project.Forms.BaseTestForm
     {
-        public Test1CybersecurityCourseForm()
+        public Test2OOPCourseForm()
         {
             InitializeComponent();
         }
-        public Test1CybersecurityCourseForm(User user, Course course, int testId) : base(user, course, testId)
+        public Test2OOPCourseForm(User user, Course course, int testId) : base(user, course, testId)
         {
             InitializeComponent();
             List<Course> courses = DataBaseManager.MakeObjectsList<Course>(DataBaseManager.CoursesDBPath);
@@ -29,7 +29,7 @@ namespace Project.Forms
                 Question1Table.Visible = false;
                 Question2Table.Visible = false;
                 Question3Table.Visible = false;
-            } 
+            }
         }
 
 
@@ -131,20 +131,20 @@ namespace Project.Forms
             if (_user.Role != "Teacher")
             {
                 List<Course> courses = DataBaseManager.MakeObjectsList<Course>(DataBaseManager.CoursesDBPath);
-                foreach (var studentCheker in courses[_course.Id-1].Tests[_testId - 1].Students)
+                foreach (var studentCheker in courses[_course.Id - 1].Tests[_testId - 1].Students)
                 {
                     Console.WriteLine(studentCheker.Username);
-                    if(studentCheker.Username == _user.Username)
+                    if (studentCheker.Username == _user.Username)
                     {
                         UsefullMethods.ShowMessage("You can't pass it twice...", _course.Name);
                         return;
                     }
                 }
-                Student student = new Student(_user.Username, _user.FirstName,_user.LastName);
+                Student student = new Student(_user.Username, _user.FirstName, _user.LastName);
                 Test test = courses[_course.Id - 1].Tests[_testId - 1];
 
                 test.AddObject(student);
-                
+
                 for (int i = 0; i < question1Checkboxes.Length; i++)
                 {
                     var question = question1Checkboxes[i];

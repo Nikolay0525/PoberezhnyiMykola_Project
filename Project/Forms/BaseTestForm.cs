@@ -19,6 +19,8 @@ namespace Project.Forms
         protected readonly User _user;
         protected readonly Course _course;
         protected readonly int _testId;
+        protected readonly QuestionAnswer[] _answers;
+        protected readonly TestQuestion[] _questions;
 
         public BaseTestForm() 
         {

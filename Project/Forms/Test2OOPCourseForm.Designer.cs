@@ -3,7 +3,7 @@ using System;
 
 namespace Project.Forms
 {
-    partial class Test1CybersecurityCourseForm
+    partial class Test2OOPCourseForm
     {
         /// <summary>
         /// Required designer variable.
@@ -48,11 +48,11 @@ namespace Project.Forms
             this.Question3Check2 = new System.Windows.Forms.CheckBox();
             this.Question3Check3 = new System.Windows.Forms.CheckBox();
             this.Question3Table = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Question2Table = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Question1Table = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Question3Table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Question2Table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Question1Table)).BeginInit();
@@ -66,7 +66,7 @@ namespace Project.Forms
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 29);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Test1";
+            this.label1.Text = "Test2";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Question1Check1
@@ -235,6 +235,13 @@ namespace Project.Forms
             this.Question3Table.Size = new System.Drawing.Size(273, 117);
             this.Question3Table.TabIndex = 4;
             // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 130;
+            // 
             // Question2Table
             // 
             this.Question2Table.AllowUserToAddRows = false;
@@ -247,6 +254,13 @@ namespace Project.Forms
             this.Question2Table.ReadOnly = true;
             this.Question2Table.Size = new System.Drawing.Size(273, 117);
             this.Question2Table.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 130;
             // 
             // Question1Table
             // 
@@ -268,21 +282,7 @@ namespace Project.Forms
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Width = 130;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Student";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 130;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Student";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 130;
-            // 
-            // Test1CybersecurityCourseForm
+            // Test2CybersecurityCourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.ClientSize = new System.Drawing.Size(893, 700);
@@ -303,7 +303,7 @@ namespace Project.Forms
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Test1CybersecurityCourseForm";
+            this.Name = "Test2CybersecurityCourseForm";
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);

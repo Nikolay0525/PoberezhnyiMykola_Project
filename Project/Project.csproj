@@ -128,15 +128,35 @@
     <Compile Include="Forms\OOPCourseEnvironmentForm.Designer.cs">
       <DependentUpon>OOPCourseEnvironmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Test1OOPCourseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Test1OOPCourseForm.Designer.cs">
+      <DependentUpon>Test1OOPCourseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Test2OOPCourseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Test2OOPCourseForm.Designer.cs">
+      <DependentUpon>Test2OOPCourseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Test1CybersecurityCourseForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Test1CybersecurityCourseForm.Designer.cs">
       <DependentUpon>Test1CybersecurityCourseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\MyInterfaces.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\EnvironmentObject.cs" />
     <Compile Include="Models\QuestionAnswer.cs" />
+    <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\TestQuestion.cs" />
     <Compile Include="Models\User.cs" />
@@ -147,7 +167,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilitys\FormCreater.cs" />
-    <Compile Include="Utilitys\Interfaces.cs" />
     <Compile Include="Utilitys\MaterialFormSkinChanger.cs" />
     <Compile Include="Utilitys\UsefullMethods.cs" />
     <Compile Include="Utilitys\DataBaseManager.cs" />
@@ -188,6 +207,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OOPCourseEnvironmentForm.resx">
       <DependentUpon>OOPCourseEnvironmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Test1OOPCourseForm.resx">
+      <DependentUpon>Test1OOPCourseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Test2OOPCourseForm.resx">
+      <DependentUpon>Test2OOPCourseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Test1CybersecurityCourseForm.resx">
       <DependentUpon>Test1CybersecurityCourseForm.cs</DependentUpon>
