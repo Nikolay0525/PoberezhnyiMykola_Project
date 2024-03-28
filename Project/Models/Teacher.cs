@@ -17,7 +17,7 @@ namespace Project.Models
         {
             get => _teachers[index];
         }
-        public Teacher(string username, string firstName, string lastName, string scienceDegree) : base(username, firstName, lastName)
+        public Teacher(string username = "", string firstName = "", string lastName = "", string scienceDegree = "") : base(username, firstName, lastName)
         {
             _scienceDegree = scienceDegree;
             if (!_teachers.Exists(teacher => teacher.Username == Username))
@@ -25,7 +25,7 @@ namespace Project.Models
                 _teachers.Add(this);
             }
         }
-        public void ShowProfile(string username)
+        public void ShowProfile(string username = "")
         {
 
         }

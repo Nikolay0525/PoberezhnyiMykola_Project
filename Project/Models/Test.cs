@@ -23,7 +23,7 @@ namespace Project.Models
         {
             get => _tests[index];
         }
-        public Test(int id,string name, string description) : base(id)
+        public Test(int id,string name = "", string description = "") : base(id)
         {
             _name = name;
             _description = description;

@@ -35,7 +35,7 @@ namespace Project.Models
             _tests = new List<Test>();
             _users = new List<User>();
         }*/
-        public Course(int id, string name, string facultyName) : base(id)
+        public Course(int id, string name = "", string facultyName = "") : base(id)
         {
             _name = name;
             _name = facultyName;

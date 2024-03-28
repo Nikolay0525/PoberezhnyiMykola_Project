@@ -30,7 +30,7 @@ namespace Project.Models
         {
             get => _students[index];
         }
-        public Student(string username, string firstName, string lastName) : base(username, firstName, lastName) 
+        public Student(string username = "", string firstName = "", string lastName = "") : base(username, firstName, lastName) 
         {
             Mark = 0;
             if (!_students.Exists(student => student.Username == Username))
@@ -44,7 +44,7 @@ namespace Project.Models
             return "{name: " + Username + ", mark: " + Mark + "}";
         }
 
-        public void ShowProfile(string username)
+        public void ShowProfile(string username = "")
         {
 
         }
