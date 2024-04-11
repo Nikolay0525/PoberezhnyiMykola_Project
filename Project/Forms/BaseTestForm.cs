@@ -18,27 +18,24 @@ namespace Project.Forms
     {
         protected readonly User _user;
         protected readonly Course _course;
-        protected readonly int _testId;
-        protected readonly QuestionAnswer[] _answers;
-        protected readonly TestQuestion[] _questions;
+        protected readonly Test _test;
+        protected readonly List<QuestionAnswer> _answers;
+        protected readonly List<TestQuestion> _questions;
+        protected List<List<bool>> _questionsAnswers;
 
         public BaseTestForm() 
         {
             InitializeComponent();
         }
-        public BaseTestForm(User user, Course course, int testId)
+        public BaseTestForm(User user, Course course, Test test)
         {
             Text = course.Name;
             _user = user;
             _course = course;
-            _testId = testId;
+            _test = test;
             InitializeComponent();
         }
 
-        private void SendButton_Click(object sender, EventArgs e)
-        {
-            
-        }
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();

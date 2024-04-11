@@ -11,13 +11,13 @@ namespace Project.Utilitys
 {
     public class FormCreater
     {
-        public static Form CreateForm(string formName, User User, Course course)
+        public static Form CreateForm(string formName, User user, Course course)
         {
             Type formType = Type.GetType("Project.Forms." + formName);
 
             if (formType != null && formType.IsSubclassOf(typeof(Form)))
             {
-                Form formInstance = (Form)Activator.CreateInstance(formType, User, course);
+                Form formInstance = (Form)Activator.CreateInstance(formType, user, course);
                 return formInstance;
             }
             else
@@ -25,13 +25,13 @@ namespace Project.Utilitys
                 throw new ArgumentException("Форму з назвою " + formName + " не знайдено.");
             }
         }
-        public static Form CreateTestForm(string formName, User User, Course course, int testId)
+        public static Form CreateTestForm(string formName, User user, Course course, Test test)
         {
             Type formType = Type.GetType("Project.Forms." + formName);
 
             if (formType != null && formType.IsSubclassOf(typeof(Form)))
             {
-                Form formInstance = (Form)Activator.CreateInstance(formType, User, course, testId);
+                Form formInstance = (Form)Activator.CreateInstance(formType, user, course, test);
                 return formInstance;
             }
             else

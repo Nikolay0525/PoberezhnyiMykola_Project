@@ -23,7 +23,7 @@ namespace Project.Forms
         {
             Hide();
 
-            Form formInstance = FormCreater.CreateTestForm("Test1" + _course.Name + "CourseForm", _user, _course, _course.Tests[0].Id);
+            Form formInstance = FormCreater.CreateTestForm("Test1" + _course.Name + "CourseForm", _user, _course, _course.Tests[0]);
             formInstance.FormClosed += (s, arg) =>
             {
                 Show();
@@ -35,7 +35,7 @@ namespace Project.Forms
         {
             Hide();
 
-            Form formInstance = FormCreater.CreateTestForm("Test2" + _course.Name + "CourseForm", _user, _course, _course.Tests[1].Id);
+            Form formInstance = FormCreater.CreateTestForm("Test2" + _course.Name + "CourseForm", _user, _course, _course.Tests[1]);
             formInstance.FormClosed += (s, arg) =>
             {
                 Show();

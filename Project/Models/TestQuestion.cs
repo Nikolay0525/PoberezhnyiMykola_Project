@@ -11,7 +11,7 @@ namespace Project.Models
     {
         private List<QuestionAnswer> _answers;
         public List<QuestionAnswer> Answers { get => _answers; set => _answers = value; }
-        public TestQuestion(int id) : base(id) 
+        public TestQuestion() : base() 
         {
         }
         public override string GetJson()

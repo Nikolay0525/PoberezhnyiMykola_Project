@@ -8,7 +8,9 @@ using System.Xml.Linq;
 using Project.Utilitys;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using static Project.DataBaseManager;
+using static Project.Utilitys.Predicates;
+using static Project.Utilitys.Constants;
+using Project.Repository;
 
 namespace Project.Forms
 
@@ -23,20 +25,26 @@ namespace Project.Forms
             _user = user;
             PersonName.Text = user.FirstName + " " + user.LastName ;
             PersonRole.Text = user.Role;
-            ReadingOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 1, _user, UpdateTableWithAvailableCourses);
-            ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
+            //ReadingOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 1, _user, UpdateTableWithAvailableCourses);
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadingOperationsWithTable<User>(AvailableCoursesTable, 1, _user, UpdateTableWithAvailableCourses);
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadingOperationsWithTable<User>(ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
+            //ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
         }
 
         private void SignButton_Click(object sender, EventArgs e)
         {
-            ReadAndWriteOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 0,_user, SignUserOnCourse);
-            ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
+            //ReadAndWriteOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 0,_user, SignUserOnCourse);
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadAndWriteOperationsWithTable<User>(AvailableCoursesTable, 0, _user, SignUserOnCourse);
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadingOperationsWithTable<User>(ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
+            //ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
         }
 
         private void UnsignButton_Click(object sender, EventArgs e)
         {
-            ReadAndWriteOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 0, _user, UnsignUserFromCourse);
-            ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
+            /*ReadAndWriteOperationsWithTable<Course>(CoursesDBPath, AvailableCoursesTable, 0, _user, UnsignUserFromCourse);
+            ReadingOperationsWithTable<Course>(CoursesDBPath, ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);*/
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadAndWriteOperationsWithTable<User>(AvailableCoursesTable, 0, _user, UnsignUserFromCourse);
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadingOperationsWithTable<User>(ActualCoursesTable, 1, _user, UpdateTableWithActualCourses);
         }
 
         private void ActualCoursesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -45,19 +53,16 @@ namespace Project.Forms
             {
                 DataGridViewRow selectedRow = ActualCoursesTable.Rows[e.RowIndex];
                 string selectedId = selectedRow.Cells["ActualGridColumnCourseId"].Value.ToString();
-                List<Course> courses = MakeObjectsList<Course>(CoursesDBPath);
-                foreach (var course in courses)
+                if (RepositoryManager.GetRepo<Course>(CoursesDBPath).GetObjectByFilter(c => c.Id == Guid.Parse(selectedId)) != null)
                 {
-                    if (course.Id == int.Parse(selectedId))
+                    var course = RepositoryManager.GetRepo<Course>(CoursesDBPath).GetObjectByFilter(c => c.Id == Guid.Parse(selectedId));
+                    Hide();
+                    Form formInstance = FormCreater.CreateForm(course.Name + "CourseEnvironmentForm", _user, course);
+                    formInstance.FormClosed += (s, arg) =>
                     {
-                        Hide();
-                        Form formInstance = FormCreater.CreateForm(course.Name + "CourseEnvironmentForm", _user, course);
-                        formInstance.FormClosed += (s, arg) =>
-                        {
-                            Show();
-                        };
-                        formInstance.Show();
-                    }
+                        Show();
+                    };
+                    formInstance.Show();
                 }
 
             }

@@ -16,6 +16,9 @@ using System.Xml.Linq;
 using Project.Utilitys;
 using Newtonsoft.Json;
 using static Project.DataBaseManager;
+using static Project.Utilitys.Constants;
+using static Project.Utilitys.Predicates;
+using Project.Repository;
 
 namespace Project.Forms
 {
@@ -28,15 +31,7 @@ namespace Project.Forms
             _user = User;
             _course = course;
             this.Text = "Welcome to " + course.Name + " journal!";
-            List<Course> courses = MakeObjectsList<Course>(CoursesDBPath);
             InitializeComponent();
-            foreach (var courseFromDB in courses)
-            {
-                if (courseFromDB.Name == course.Name)
-                {
-                    ReadingCourseOperationsWithTable(JournalTable, 1, courseFromDB, UpdateContentOfTableJournal);
-                }
-            }
             if (_user.Role == "Student") // access to table
             {
                 for (int i = 1; i < JournalTable.ColumnCount; i++)
@@ -51,6 +46,7 @@ namespace Project.Forms
                     JournalTable.Columns[i].ReadOnly = false;
                 }
             }
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadingOperationsWithTable<Course>(JournalTable, 1, _course, UpdateContentOfTableJournal);
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -60,12 +56,13 @@ namespace Project.Forms
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
-            if(_user.Role == "Teacher")
+            if (_user.Role == "Teacher")
             {
-                ApplyChangesToDBJournal(JournalTable, _course);
+                //ApplyChangesToDBJournal(JournalTable, _course);
+                RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadAndWriteOperationsWithTable<Course>(JournalTable, 0, _course, ApplyChangesToDBJournal);
                 return;
             }
-            UsefullMethods.ShowMessage("You aren't teacher!", "Journal");
+            MessageBox.Show("You aren't teacher!", "Journal", MessageBoxButtons.OK);
         }
 
         private void JournalTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -90,7 +87,7 @@ namespace Project.Forms
                 }
 
             }*/
-            
+
         }
     }
 }

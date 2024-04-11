@@ -10,7 +10,10 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Project.Models;
+using Project.Repository;
 using static Project.DataBaseManager;
+using static Project.Utilitys.Predicates;
+using static Project.Utilitys.Constants;
 
 namespace Project.Forms
 {
@@ -29,12 +32,14 @@ namespace Project.Forms
             _course = course;
             this.Text = "Welcome to " + course.Name + " course!";
             InitializeComponent();
-            ReadingCourseOperationsWithTable(TeacherTable, 1, _course, UpdateTeacherTable);
+            //ReadingCourseOperationsWithTable(TeacherTable, 1, _course, UpdateTeacherTable);
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadingOperationsWithTable<Course>(TeacherTable, 1, _course, UpdateTeacherTable);
         }
 
         private void JournalButton_Click(object sender, EventArgs e)
         {
-            ReadingCourseOperationsWithTable(TeacherTable, 1, _course, UpdateTeacherTable);
+            //ReadingCourseOperationsWithTable(TeacherTable, 1, _course, UpdateTeacherTable);
+            RepositoryManager.GetRepo<Course>(CoursesDBPath).ReadingOperationsWithTable<Course>(TeacherTable, 1, _course, UpdateTeacherTable);
             Hide();
             JournalForm journalForm = new JournalForm(_user, _course);
             journalForm.FormClosed += (s, arg) =>

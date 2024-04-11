@@ -9,14 +9,14 @@ namespace Project.Models
 {
     public sealed class QuestionAnswer : EnvironmentObject
     {
-        private Student[] _students;
-        public Student[] Students { get => _students; set => _students = value; }
-        public QuestionAnswer(int id) : base(id)
+        private List<Student> _students;
+        public List<Student> Students { get => _students; set => _students = value; }
+        public QuestionAnswer() : base()
         { }
         public override string GetJson()
         {
             var json = "{";
-            if (Students?.Length > 0)
+            if (Students?.Count > 0)
             {
                 json = " students: [";
 

@@ -30,236 +30,166 @@ namespace Project.Forms
         /// the contents of this method with the code editor.
         /// </summary>
         /// 
-        
+
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.Question1Check1 = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.SendButton = new System.Windows.Forms.Button();
-            this.Question1Check2 = new System.Windows.Forms.CheckBox();
-            this.Question1Check3 = new System.Windows.Forms.CheckBox();
-            this.Question2Check1 = new System.Windows.Forms.CheckBox();
-            this.Question2Check2 = new System.Windows.Forms.CheckBox();
-            this.Question2Check3 = new System.Windows.Forms.CheckBox();
-            this.Question3Check1 = new System.Windows.Forms.CheckBox();
-            this.Question3Check2 = new System.Windows.Forms.CheckBox();
-            this.Question3Check3 = new System.Windows.Forms.CheckBox();
-            this.Question3Table = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Question2Table = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Q3Box = new System.Windows.Forms.GroupBox();
+            this.Q3Answer3 = new System.Windows.Forms.RadioButton();
+            this.Q3Answer2 = new System.Windows.Forms.RadioButton();
+            this.Q3Answer1 = new System.Windows.Forms.RadioButton();
+            this.Q2Box = new System.Windows.Forms.GroupBox();
+            this.Q2Answer2 = new System.Windows.Forms.RadioButton();
+            this.Q2Answer1 = new System.Windows.Forms.RadioButton();
+            this.Q1Box = new System.Windows.Forms.GroupBox();
+            this.Q1Answer3 = new System.Windows.Forms.CheckBox();
+            this.Q1Answer2 = new System.Windows.Forms.CheckBox();
+            this.Q1Answer1 = new System.Windows.Forms.CheckBox();
             this.Question1Table = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.Question3Table)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Question2Table)).BeginInit();
+            this.Question2Table = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Question3Table = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SendButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Q3Box.SuspendLayout();
+            this.Q2Box.SuspendLayout();
+            this.Q1Box.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Question1Table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Question2Table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Question3Table)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // Q3Box
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(145, 98);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(199, 29);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Test1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Q3Box.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Q3Box.Controls.Add(this.Q3Answer3);
+            this.Q3Box.Controls.Add(this.Q3Answer2);
+            this.Q3Box.Controls.Add(this.Q3Answer1);
+            this.Q3Box.Location = new System.Drawing.Point(79, 426);
+            this.Q3Box.Name = "Q3Box";
+            this.Q3Box.Size = new System.Drawing.Size(330, 87);
+            this.Q3Box.TabIndex = 17;
+            this.Q3Box.TabStop = false;
             // 
-            // Question1Check1
+            // Q3Answer3
             // 
-            this.Question1Check1.AutoSize = true;
-            this.Question1Check1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question1Check1.Location = new System.Drawing.Point(221, 182);
-            this.Question1Check1.Name = "Question1Check1";
-            this.Question1Check1.Size = new System.Drawing.Size(48, 24);
-            this.Question1Check1.TabIndex = 2;
-            this.Question1Check1.Text = "C#";
-            this.Question1Check1.UseVisualStyleBackColor = false;
-            this.Question1Check1.CheckedChanged += new System.EventHandler(this.Question1Check_CheckedChanged);
+            this.Q3Answer3.AutoSize = true;
+            this.Q3Answer3.Location = new System.Drawing.Point(6, 57);
+            this.Q3Answer3.Name = "Q3Answer3";
+            this.Q3Answer3.Size = new System.Drawing.Size(319, 24);
+            this.Q3Answer3.TabIndex = 0;
+            this.Q3Answer3.TabStop = true;
+            this.Q3Answer3.Text = "Encapsulation Inheritance, polymorphism";
+            this.Q3Answer3.UseVisualStyleBackColor = true;
+            this.Q3Answer3.CheckedChanged += new System.EventHandler(this.Q3Box_CheckedChanged);
             // 
-            // label2
+            // Q3Answer2
             // 
-            this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(81, 150);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(327, 29);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Which language allows OOP?";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Q3Answer2.AutoSize = true;
+            this.Q3Answer2.Location = new System.Drawing.Point(6, 34);
+            this.Q3Answer2.Name = "Q3Answer2";
+            this.Q3Answer2.Size = new System.Drawing.Size(214, 24);
+            this.Q3Answer2.TabIndex = 0;
+            this.Q3Answer2.TabStop = true;
+            this.Q3Answer2.Text = "Inheritance, polymorphism";
+            this.Q3Answer2.UseVisualStyleBackColor = true;
+            this.Q3Answer2.CheckedChanged += new System.EventHandler(this.Q3Box_CheckedChanged);
             // 
-            // label3
+            // Q3Answer1
             // 
-            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(92, 269);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(316, 29);
-            this.label3.TabIndex = 1;
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Q3Answer1.AutoSize = true;
+            this.Q3Answer1.Location = new System.Drawing.Point(6, 13);
+            this.Q3Answer1.Name = "Q3Answer1";
+            this.Q3Answer1.Size = new System.Drawing.Size(237, 24);
+            this.Q3Answer1.TabIndex = 0;
+            this.Q3Answer1.TabStop = true;
+            this.Q3Answer1.Text = "Polymorphism, encapsulation";
+            this.Q3Answer1.UseVisualStyleBackColor = true;
+            this.Q3Answer1.CheckedChanged += new System.EventHandler(this.Q3Box_CheckedChanged);
             // 
-            // label4
+            // Q2Box
             // 
-            this.label4.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(77, 388);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(331, 29);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Can we trust Answers of ChatGPT?";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Q2Box.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Q2Box.Controls.Add(this.Q2Answer2);
+            this.Q2Box.Controls.Add(this.Q2Answer1);
+            this.Q2Box.Location = new System.Drawing.Point(79, 307);
+            this.Q2Box.Name = "Q2Box";
+            this.Q2Box.Size = new System.Drawing.Size(330, 87);
+            this.Q2Box.TabIndex = 18;
+            this.Q2Box.TabStop = false;
             // 
-            // SendButton
+            // Q2Answer2
             // 
-            this.SendButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.SendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SendButton.Location = new System.Drawing.Point(12, 569);
-            this.SendButton.Name = "SendButton";
-            this.SendButton.Size = new System.Drawing.Size(474, 56);
-            this.SendButton.TabIndex = 3;
-            this.SendButton.Text = "Send Answers";
-            this.SendButton.UseVisualStyleBackColor = false;
-            this.SendButton.Click += new System.EventHandler(this.SendButton_Click);
+            this.Q2Answer2.AutoSize = true;
+            this.Q2Answer2.Location = new System.Drawing.Point(18, 51);
+            this.Q2Answer2.Name = "Q2Answer2";
+            this.Q2Answer2.Size = new System.Drawing.Size(52, 24);
+            this.Q2Answer2.TabIndex = 0;
+            this.Q2Answer2.TabStop = true;
+            this.Q2Answer2.Text = "Not";
+            this.Q2Answer2.UseVisualStyleBackColor = true;
+            this.Q2Answer2.CheckedChanged += new System.EventHandler(this.Q2Box_CheckedChanged);
             // 
-            // Question1Check2
+            // Q2Answer1
             // 
-            this.Question1Check2.AutoSize = true;
-            this.Question1Check2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question1Check2.Location = new System.Drawing.Point(221, 212);
-            this.Question1Check2.Name = "Question1Check2";
-            this.Question1Check2.Size = new System.Drawing.Size(38, 24);
-            this.Question1Check2.TabIndex = 2;
-            this.Question1Check2.Text = "C";
-            this.Question1Check2.UseVisualStyleBackColor = false;
-            this.Question1Check2.CheckedChanged += new System.EventHandler(this.Question1Check_CheckedChanged);
+            this.Q2Answer1.AutoSize = true;
+            this.Q2Answer1.Location = new System.Drawing.Point(18, 26);
+            this.Q2Answer1.Name = "Q2Answer1";
+            this.Q2Answer1.Size = new System.Drawing.Size(53, 24);
+            this.Q2Answer1.TabIndex = 0;
+            this.Q2Answer1.TabStop = true;
+            this.Q2Answer1.Text = "Yes";
+            this.Q2Answer1.UseVisualStyleBackColor = true;
+            this.Q2Answer1.CheckedChanged += new System.EventHandler(this.Q2Box_CheckedChanged);
             // 
-            // Question1Check3
+            // Q1Box
             // 
-            this.Question1Check3.AutoSize = true;
-            this.Question1Check3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question1Check3.Location = new System.Drawing.Point(205, 242);
-            this.Question1Check3.Name = "Question1Check3";
-            this.Question1Check3.Size = new System.Drawing.Size(76, 24);
-            this.Question1Check3.TabIndex = 2;
-            this.Question1Check3.Text = "Pascal";
-            this.Question1Check3.UseVisualStyleBackColor = false;
-            this.Question1Check3.CheckedChanged += new System.EventHandler(this.Question1Check_CheckedChanged);
+            this.Q1Box.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Q1Box.Controls.Add(this.Q1Answer3);
+            this.Q1Box.Controls.Add(this.Q1Answer2);
+            this.Q1Box.Controls.Add(this.Q1Answer1);
+            this.Q1Box.Location = new System.Drawing.Point(79, 185);
+            this.Q1Box.Name = "Q1Box";
+            this.Q1Box.Size = new System.Drawing.Size(330, 87);
+            this.Q1Box.TabIndex = 16;
+            this.Q1Box.TabStop = false;
             // 
-            // Question2Check1
+            // Q1Answer3
             // 
-            this.Question2Check1.AutoSize = true;
-            this.Question2Check1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question2Check1.Location = new System.Drawing.Point(165, 301);
-            this.Question2Check1.Name = "Question2Check1";
-            this.Question2Check1.Size = new System.Drawing.Size(163, 24);
-            this.Question2Check1.TabIndex = 2;
-            this.Question2Check1.Text = "Yes, it\'s fully safe!!!";
-            this.Question2Check1.UseVisualStyleBackColor = false;
-            this.Question2Check1.CheckedChanged += new System.EventHandler(this.Question2Check_CheckedChanged);
+            this.Q1Answer3.AutoSize = true;
+            this.Q1Answer3.Location = new System.Drawing.Point(18, 60);
+            this.Q1Answer3.Name = "Q1Answer3";
+            this.Q1Answer3.Size = new System.Drawing.Size(56, 24);
+            this.Q1Answer3.TabIndex = 0;
+            this.Q1Answer3.Text = "C++";
+            this.Q1Answer3.UseVisualStyleBackColor = true;
+            this.Q1Answer3.CheckedChanged += new System.EventHandler(this.Q1Box_CheckedChanged);
             // 
-            // Question2Check2
+            // Q1Answer2
             // 
-            this.Question2Check2.AutoSize = true;
-            this.Question2Check2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question2Check2.Location = new System.Drawing.Point(101, 331);
-            this.Question2Check2.Name = "Question2Check2";
-            this.Question2Check2.Size = new System.Drawing.Size(316, 24);
-            this.Question2Check2.TabIndex = 2;
-            this.Question2Check2.Text = "50/50, some program may be dangerous";
-            this.Question2Check2.UseVisualStyleBackColor = false;
-            this.Question2Check2.CheckedChanged += new System.EventHandler(this.Question2Check_CheckedChanged);
+            this.Q1Answer2.AutoSize = true;
+            this.Q1Answer2.Location = new System.Drawing.Point(18, 36);
+            this.Q1Answer2.Name = "Q1Answer2";
+            this.Q1Answer2.Size = new System.Drawing.Size(48, 24);
+            this.Q1Answer2.TabIndex = 0;
+            this.Q1Answer2.Text = "C#";
+            this.Q1Answer2.UseVisualStyleBackColor = true;
+            this.Q1Answer2.CheckedChanged += new System.EventHandler(this.Q1Box_CheckedChanged);
             // 
-            // Question2Check3
+            // Q1Answer1
             // 
-            this.Question2Check3.AutoSize = true;
-            this.Question2Check3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question2Check3.Location = new System.Drawing.Point(143, 361);
-            this.Question2Check3.Name = "Question2Check3";
-            this.Question2Check3.Size = new System.Drawing.Size(201, 24);
-            this.Question2Check3.TabIndex = 2;
-            this.Question2Check3.Text = "No, much better buy soft";
-            this.Question2Check3.UseVisualStyleBackColor = false;
-            this.Question2Check3.CheckedChanged += new System.EventHandler(this.Question2Check_CheckedChanged);
-            // 
-            // Question3Check1
-            // 
-            this.Question3Check1.AutoSize = true;
-            this.Question3Check1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question3Check1.Location = new System.Drawing.Point(165, 420);
-            this.Question3Check1.Name = "Question3Check1";
-            this.Question3Check1.Size = new System.Drawing.Size(160, 24);
-            this.Question3Check1.TabIndex = 2;
-            this.Question3Check1.Text = "Yes, he\'s the God!!!";
-            this.Question3Check1.UseVisualStyleBackColor = false;
-            this.Question3Check1.CheckedChanged += new System.EventHandler(this.Question3Check_CheckedChanged);
-            // 
-            // Question3Check2
-            // 
-            this.Question3Check2.AutoSize = true;
-            this.Question3Check2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question3Check2.Location = new System.Drawing.Point(101, 450);
-            this.Question3Check2.Name = "Question3Check2";
-            this.Question3Check2.Size = new System.Drawing.Size(328, 24);
-            this.Question3Check2.TabIndex = 2;
-            this.Question3Check2.Text = "We should check his Answers before using";
-            this.Question3Check2.UseVisualStyleBackColor = false;
-            this.Question3Check2.CheckedChanged += new System.EventHandler(this.Question3Check_CheckedChanged);
-            // 
-            // Question3Check3
-            // 
-            this.Question3Check3.AutoSize = true;
-            this.Question3Check3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Question3Check3.Location = new System.Drawing.Point(137, 480);
-            this.Question3Check3.Name = "Question3Check3";
-            this.Question3Check3.Size = new System.Drawing.Size(234, 24);
-            this.Question3Check3.TabIndex = 2;
-            this.Question3Check3.Text = "No, he\'s giving trash Answers";
-            this.Question3Check3.UseVisualStyleBackColor = false;
-            this.Question3Check3.CheckedChanged += new System.EventHandler(this.Question3Check_CheckedChanged);
-            // 
-            // Question3Table
-            // 
-            this.Question3Table.AllowUserToAddRows = false;
-            this.Question3Table.AllowUserToDeleteRows = false;
-            this.Question3Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Question3Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3});
-            this.Question3Table.Location = new System.Drawing.Point(591, 388);
-            this.Question3Table.Name = "Question3Table";
-            this.Question3Table.ReadOnly = true;
-            this.Question3Table.Size = new System.Drawing.Size(273, 117);
-            this.Question3Table.TabIndex = 4;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Student";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 130;
-            // 
-            // Question2Table
-            // 
-            this.Question2Table.AllowUserToAddRows = false;
-            this.Question2Table.AllowUserToDeleteRows = false;
-            this.Question2Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Question2Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
-            this.Question2Table.Location = new System.Drawing.Point(591, 265);
-            this.Question2Table.Name = "Question2Table";
-            this.Question2Table.ReadOnly = true;
-            this.Question2Table.Size = new System.Drawing.Size(273, 117);
-            this.Question2Table.TabIndex = 4;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Student";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 130;
+            this.Q1Answer1.AutoSize = true;
+            this.Q1Answer1.Location = new System.Drawing.Point(18, 11);
+            this.Q1Answer1.Name = "Q1Answer1";
+            this.Q1Answer1.Size = new System.Drawing.Size(38, 24);
+            this.Q1Answer1.TabIndex = 0;
+            this.Q1Answer1.Text = "C";
+            this.Q1Answer1.UseVisualStyleBackColor = true;
+            this.Q1Answer1.CheckedChanged += new System.EventHandler(this.Q1Box_CheckedChanged);
             // 
             // Question1Table
             // 
@@ -268,11 +198,11 @@ namespace Project.Forms
             this.Question1Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Question1Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5});
-            this.Question1Table.Location = new System.Drawing.Point(591, 150);
+            this.Question1Table.Location = new System.Drawing.Point(592, 156);
             this.Question1Table.Name = "Question1Table";
             this.Question1Table.ReadOnly = true;
             this.Question1Table.Size = new System.Drawing.Size(273, 109);
-            this.Question1Table.TabIndex = 4;
+            this.Question1Table.TabIndex = 13;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -281,23 +211,113 @@ namespace Project.Forms
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Width = 130;
             // 
+            // Question2Table
+            // 
+            this.Question2Table.AllowUserToAddRows = false;
+            this.Question2Table.AllowUserToDeleteRows = false;
+            this.Question2Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Question2Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.Question2Table.Location = new System.Drawing.Point(592, 271);
+            this.Question2Table.Name = "Question2Table";
+            this.Question2Table.ReadOnly = true;
+            this.Question2Table.Size = new System.Drawing.Size(273, 117);
+            this.Question2Table.TabIndex = 14;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 130;
+            // 
+            // Question3Table
+            // 
+            this.Question3Table.AllowUserToAddRows = false;
+            this.Question3Table.AllowUserToDeleteRows = false;
+            this.Question3Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Question3Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3});
+            this.Question3Table.Location = new System.Drawing.Point(592, 394);
+            this.Question3Table.Name = "Question3Table";
+            this.Question3Table.ReadOnly = true;
+            this.Question3Table.Size = new System.Drawing.Size(273, 117);
+            this.Question3Table.TabIndex = 15;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Student";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 130;
+            // 
+            // SendButton
+            // 
+            this.SendButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendButton.Location = new System.Drawing.Point(13, 575);
+            this.SendButton.Name = "SendButton";
+            this.SendButton.Size = new System.Drawing.Size(474, 56);
+            this.SendButton.TabIndex = 12;
+            this.SendButton.Text = "Send Answers";
+            this.SendButton.UseVisualStyleBackColor = false;
+            this.SendButton.Click += new System.EventHandler(this.SendButton_Click);
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(78, 394);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(331, 29);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Basic principles?";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(93, 275);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(316, 29);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "OOP is popular now?";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(82, 156);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(327, 29);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Select OOP languages";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(146, 104);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(199, 29);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Test1";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Test1OOPCourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.ClientSize = new System.Drawing.Size(893, 700);
+            this.Controls.Add(this.Q3Box);
+            this.Controls.Add(this.Q2Box);
+            this.Controls.Add(this.Q1Box);
             this.Controls.Add(this.Question1Table);
             this.Controls.Add(this.Question2Table);
             this.Controls.Add(this.Question3Table);
             this.Controls.Add(this.SendButton);
-            this.Controls.Add(this.Question3Check3);
-            this.Controls.Add(this.Question2Check3);
-            this.Controls.Add(this.Question1Check3);
-            this.Controls.Add(this.Question3Check2);
-            this.Controls.Add(this.Question2Check2);
-            this.Controls.Add(this.Question1Check2);
-            this.Controls.Add(this.Question3Check1);
-            this.Controls.Add(this.Question2Check1);
-            this.Controls.Add(this.Question1Check1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -307,48 +327,49 @@ namespace Project.Forms
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.Question1Check1, 0);
-            this.Controls.SetChildIndex(this.Question2Check1, 0);
-            this.Controls.SetChildIndex(this.Question3Check1, 0);
-            this.Controls.SetChildIndex(this.Question1Check2, 0);
-            this.Controls.SetChildIndex(this.Question2Check2, 0);
-            this.Controls.SetChildIndex(this.Question3Check2, 0);
-            this.Controls.SetChildIndex(this.Question1Check3, 0);
-            this.Controls.SetChildIndex(this.Question2Check3, 0);
-            this.Controls.SetChildIndex(this.Question3Check3, 0);
             this.Controls.SetChildIndex(this.SendButton, 0);
             this.Controls.SetChildIndex(this.Question3Table, 0);
             this.Controls.SetChildIndex(this.Question2Table, 0);
             this.Controls.SetChildIndex(this.Question1Table, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.Question3Table)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Question2Table)).EndInit();
+            this.Controls.SetChildIndex(this.Q1Box, 0);
+            this.Controls.SetChildIndex(this.Q2Box, 0);
+            this.Controls.SetChildIndex(this.Q3Box, 0);
+            this.Q3Box.ResumeLayout(false);
+            this.Q3Box.PerformLayout();
+            this.Q2Box.ResumeLayout(false);
+            this.Q2Box.PerformLayout();
+            this.Q1Box.ResumeLayout(false);
+            this.Q1Box.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Question1Table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Question2Table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Question3Table)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox Question1Check1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button SendButton;
-        private System.Windows.Forms.CheckBox Question1Check2;
-        private System.Windows.Forms.CheckBox Question1Check3;
-        private System.Windows.Forms.CheckBox Question2Check1;
-        private System.Windows.Forms.CheckBox Question2Check2;
-        private System.Windows.Forms.CheckBox Question2Check3;
-        private System.Windows.Forms.CheckBox Question3Check1;
-        private System.Windows.Forms.CheckBox Question3Check2;
-        private System.Windows.Forms.CheckBox Question3Check3;
-        private DataGridView Question3Table;
-        private DataGridView Question2Table;
+        private GroupBox Q3Box;
+        private RadioButton Q3Answer3;
+        private RadioButton Q3Answer2;
+        private RadioButton Q3Answer1;
+        private GroupBox Q2Box;
+        private RadioButton Q2Answer2;
+        private RadioButton Q2Answer1;
+        private GroupBox Q1Box;
         private DataGridView Question1Table;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridView Question2Table;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridView Question3Table;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private Button SendButton;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private CheckBox Q1Answer3;
+        private CheckBox Q1Answer2;
+        private CheckBox Q1Answer1;
     }
 }

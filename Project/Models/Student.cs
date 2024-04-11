@@ -7,7 +7,7 @@ using Project.Interfaces;
 
 namespace Project.Models
 {
-    public sealed class Student : User, MyInterfaces.IStudentFeatures, MyInterfaces.IIndexerGet<Student>
+    public sealed class Student : User, IStudentFeatures, IIndexerGet<Student>
     {
         private static readonly List<Student> _students = new List<Student>();
         private int _mark;
@@ -45,6 +45,10 @@ namespace Project.Models
         }
 
         public void ShowProfile(string username = "")
+        {
+
+        }
+        public void SendMessage()
         {
 
         }

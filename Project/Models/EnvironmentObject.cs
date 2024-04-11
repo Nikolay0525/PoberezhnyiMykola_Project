@@ -11,16 +11,13 @@ using System.Xml.Linq;
 
 namespace Project.Models
 {
-    public abstract class EnvironmentObject : MyInterfaces.IManualWritingToFile
+    public abstract class EnvironmentObject : IManualWritingToFile
     {
-        private int _id;
-        public int Id { get => _id; set => _id = value; }
+        private Guid _id;
+        public Guid Id { get => _id; set => _id = value; }
         public EnvironmentObject()
         {
-        }
-        public EnvironmentObject(int id)
-        {
-            _id = id;
+            _id = Guid.NewGuid();
         }
 
         public virtual string GetJson()

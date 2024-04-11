@@ -20,5 +20,7 @@ namespace Project.Forms
             this.Text = course.Name;
             InitializeComponent();
         }
+
+
     }
 }

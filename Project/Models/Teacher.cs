@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public class Teacher : User, MyInterfaces.IPersonFeatures, MyInterfaces.IIndexerGet<Teacher>
+    public class Teacher : User, ITeacherFeatures, IIndexerGet<Teacher>
     {
         private static readonly List<Teacher> _teachers = new List<Teacher>();
         private string _scienceDegree;
@@ -29,6 +29,9 @@ namespace Project.Models
         {
 
         }
+        public void SendMessage()
+        {
 
+        }
     }
 }

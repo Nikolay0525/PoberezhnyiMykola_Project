@@ -11,7 +11,8 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Project.Models;
-using static Project.DataBaseManager;
+using static Project.Utilitys.Constants;
+using Project.Repository;
 
 namespace Project.Forms
 {
@@ -26,13 +27,19 @@ namespace Project.Forms
         {
             var role = (TeacherCheck.Checked == true) ? "Teacher" : "Student";
             var user = new User(UsernameTextBox.Text, FirstNameTextBox.Text, LastNameTextBox.Text, PasswordTextBox.Text, role);
-            if (!ReadingBoolOperationWithObject(UsersDBPath, user, CheckIfUserExist))
+            /*if (!ReadingBoolOperationWithObject(UsersDBPath, user, CheckIfUserExist))
             {
                 RewritingOperationWithObject(UsersDBPath,user, RegistrationUserInFile);
                 UsefullMethods.ShowMessage("Account created successfully!", "Registration");
                 return;
+            }*/
+            if (RepositoryManager.GetRepo<User>(UsersDBPath).GetObjectByFilter(u => u.Id == user.Id) == null) 
+            {
+                RepositoryManager.GetRepo<User>(UsersDBPath).AddObject(user);
+                MessageBox.Show("Account created successfully!", "Registration",MessageBoxButtons.OK);
+                return;
             }
-            UsefullMethods.ShowMessage("Account with such name exist...", "Registration");
+            MessageBox.Show("Account with such name exist...", "Registration", MessageBoxButtons.OK);
         }
 
         private void GoBackButton_Click(object sender, EventArgs e)

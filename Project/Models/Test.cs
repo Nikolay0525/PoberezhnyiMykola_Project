@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public sealed class Test : EnvironmentObject, MyInterfaces.IObjectManager<Student>,MyInterfaces.IIndexerGet<Test>
+    public sealed class Test : EnvironmentObject, IObjectManager<Student>,IIndexerGet<Test>
     {
+        
         private static readonly List<Test> _tests = new List<Test>();
 
         private string _name;
@@ -23,7 +24,7 @@ namespace Project.Models
         {
             get => _tests[index];
         }
-        public Test(int id,string name = "", string description = "") : base(id)
+        public Test(string name = "", string description = "") : base()
         {
             _name = name;
             _description = description;

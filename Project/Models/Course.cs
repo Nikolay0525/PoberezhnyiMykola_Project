@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.Models
 {
-    public sealed class Course : EnvironmentObject, MyInterfaces.IObjectManager<User>, MyInterfaces.IIndexerGet<Course>
+    public sealed class Course : EnvironmentObject, IObjectManager<User>, IIndexerGet<Course>
     {
         private static readonly List<Course> _courses = new List<Course>();
         private string _name;
@@ -35,7 +35,7 @@ namespace Project.Models
             _tests = new List<Test>();
             _users = new List<User>();
         }*/
-        public Course(int id, string name = "", string facultyName = "") : base(id)
+        public Course(int id, string name = "", string facultyName = "") : base()
         {
             _name = name;
             _name = facultyName;

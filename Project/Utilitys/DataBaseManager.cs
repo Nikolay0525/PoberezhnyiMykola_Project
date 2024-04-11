@@ -21,9 +21,6 @@ namespace Project
 {
     public static class DataBaseManager
     {
-        public const string UsersDBPath = "../../UsersDataBase.json";
-        public const string CoursesDBPath = "../../CoursesDataBase.json";
-
         public delegate void VoidOperationWithObject<T>(List<T> objects, T obj);
         public delegate T TypeOperationWithObject<T>(List<T> objects, T obj);
         public delegate bool BoolOperationWithObject<T>(List<T> objects, T obj);
@@ -39,6 +36,8 @@ namespace Project
             }
             return objects ?? new List<T>();
         }
+
+
         public static void RewritingOperationWithObject<T>(string filePath, T obj, params VoidOperationWithObject<T>[] operations)
         {
             List<T> objects = MakeObjectsList<T>(filePath);
@@ -101,10 +100,9 @@ namespace Project
             return null;
         }
 
-        public delegate void TableOperation<T>(DataGridView table,List<T> obj, User user);
         public delegate void TableCourseOperation<Course>(DataGridView table, Course course);
 
-        public static void ReadingOperationsWithTable<T>(string filePath, DataGridView table, int clear, User user, params TableOperation<T>[] operations)
+       /* public static void ReadingOperationsWithTable<T>(string filePath, DataGridView table, int clear, User user, params TableOperation<T>[] operations)
         {
             switch (clear)
             {
@@ -127,8 +125,8 @@ namespace Project
             {
                 operation(table, objects, user);
             }
-        }
-        public static void ReadAndWriteOperationsWithTable<T>(string filePath, DataGridView table, int clear, User user, params TableOperation<T>[] operations)
+        }*/
+        /*public static void ReadAndWriteOperationsWithTable<T>(string filePath, DataGridView table, int clear, User user, params TableOperation<T>[] operations)
         {
             switch (clear)
             {
@@ -177,7 +175,7 @@ namespace Project
             {
                 operation(table, course);
             }
-        }
+        }*/
 
         public static void UpdateTableWithAvailableCourses(DataGridView table, List<Course> courses, User user)
         {
@@ -211,7 +209,7 @@ namespace Project
                     {
                         if (currentUser.Username == user.Username)
                         {
-                            UsefullMethods.ShowMessage("You already signed on some of checked courses...", "Registration");
+                            MessageBox.Show("You already signed on some of checked courses...", "Registration", MessageBoxButtons.OK);
                             return;
                         }
                     }
@@ -219,7 +217,7 @@ namespace Project
                 }
             }
         }
-        public static void UnsignUserFromCourse(DataGridView CoursesTable,List<Course> courses, User user)
+        public static void UnsignUserFromCourse(DataGridView CoursesTable, List<Course> courses, User user)
         {
             for (int i = 0; i < courses.Count; i++)
             {
@@ -240,7 +238,7 @@ namespace Project
         }
 
 
-        public static void UpdateTeacherTable(DataGridView table, Course course)
+        /*public static void UpdateTeacherTable(DataGridView table, Course course)
         {
             List<User> users = course.Users;
             foreach (var user in users)
@@ -254,8 +252,8 @@ namespace Project
                     table.Rows.Add(newRow);
                 }
             }
-        }
-        public static void UpdateContentOfTableJournal(DataGridView table, Course course)
+        }*/
+        /*public static void UpdateContentOfTableJournal(DataGridView table, Course course)
         {
             foreach (var test in course.Tests)
             {
@@ -342,6 +340,6 @@ namespace Project
                 {
                 }
             }
-        }
+        }*/
     }
 }

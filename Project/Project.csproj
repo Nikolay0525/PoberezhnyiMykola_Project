@@ -152,7 +152,8 @@
     <Compile Include="Forms\Test1CybersecurityCourseForm.Designer.cs">
       <DependentUpon>Test1CybersecurityCourseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\MyInterfaces.cs" />
+    <Compile Include="Interfaces\FormInterfaces.cs" />
+    <Compile Include="Interfaces\ModelsInterfaces.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\EnvironmentObject.cs" />
     <Compile Include="Models\QuestionAnswer.cs" />
@@ -166,9 +167,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\RepoImplementation.cs" />
+    <Compile Include="Repository\RepositoryManager.cs" />
+    <Compile Include="Utilitys\Constants.cs" />
     <Compile Include="Utilitys\FormCreater.cs" />
     <Compile Include="Utilitys\MaterialFormSkinChanger.cs" />
-    <Compile Include="Utilitys\UsefullMethods.cs" />
+    <Compile Include="Utilitys\Predicates.cs" />
     <Compile Include="Utilitys\DataBaseManager.cs" />
     <Compile Include="Forms\UniversityLoginForm.cs">
       <SubType>Form</SubType>

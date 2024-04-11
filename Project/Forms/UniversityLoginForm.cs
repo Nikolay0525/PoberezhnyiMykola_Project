@@ -14,8 +14,10 @@ using MaterialSkin.Controls;
 using Newtonsoft.Json;
 using Project.Forms;
 using Project.Models;
+using Project.Repository;
 using Project.Utilitys;
-using static Project.DataBaseManager;
+using static Project.Utilitys.Constants;
+
 
 namespace Project.Forms
 {
@@ -25,7 +27,6 @@ namespace Project.Forms
         {
             InitializeComponent();
             MaterialFormSkinChanger.SetParametersOfForm(this);
-            CreateBaseDB();
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)
@@ -41,11 +42,12 @@ namespace Project.Forms
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            User user = ReadingOperationWithObject(UsersDBPath, new User(UsernameTextBox.Text, null, null, PasswordTextBox.Text, null),DeserializationOfUsersWithPassword);
-            if (user != null)
+            User loginUser = new User(UsernameTextBox.Text, null, null, PasswordTextBox.Text, null);
+            User actualUser = RepositoryManager.GetRepo<User>(UsersDBPath).GetObjectByFilter(u => u.Username == loginUser.Username && u.Password == loginUser.Password);
+            if (actualUser != null)
             {
                 Hide();
-                UniversityEnvironmentForm universityEnvironmentForm = new UniversityEnvironmentForm(user);
+                UniversityEnvironmentForm universityEnvironmentForm = new UniversityEnvironmentForm(actualUser);
                 universityEnvironmentForm.FormClosed += (s, arg) =>
                 {
                     Show();
@@ -53,7 +55,7 @@ namespace Project.Forms
                 universityEnvironmentForm.Show();
                 return;
             }
-            UsefullMethods.ShowMessage("Wrong username or password...","Login");
+            MessageBox.Show("Wrong username or password...","Login",MessageBoxButtons.OK);
         }
     }
 }
